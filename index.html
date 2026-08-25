@@ -1,0 +1,6530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ovum Kalyan Nagar Front Desk Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>:root{
+  --paper:#F2EFE7;
+  --paper-grid:#DFD8C9;
+  --card:#FFFDF9;
+  --ink:#24201D;
+  --muted:#6B635B;
+  --rule:#C9C1B4;
+
+  --chrome:#1C1A18;
+  --chrome-2:#25221F;
+  --chrome-line:#3A3531;
+  --chrome-ink:#EDE7DD;
+  --chrome-muted:#948B80;
+
+  --r-reception:#C96A4A;
+  --r-doctor:#2E4A7B;
+  --r-nurse:#A47C1B;
+  --r-patient:#2F7D7B;
+  --r-admin:#1E5F4B;
+  --r-system:#3B3B3B;
+  --r-pharmacist:#6E4B8E;
+
+  --warn:#B23A25;
+  --warn-bg:#FBEDE9;
+  --info:#3D5580;
+  --info-bg:#ECEFF6;
+  --success:#1E5F4B;
+  --success-bg:#E8F1EC;
+
+  --font-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --font-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--chrome);
+  color:var(--chrome-ink);
+  font-family:var(--font-sans);
+  overflow:hidden;
+}
+
+/* ---------- shell ---------- */
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh}
+
+.topbar{
+  display:flex;align-items:center;gap:20px;
+  padding:12px 20px;
+  background:var(--chrome);
+  border-bottom:1px solid var(--chrome-line);
+  flex:0 0 auto;
+}
+.brand{display:flex;align-items:baseline;gap:14px;min-width:0}
+.brand h1{
+  font-family:var(--font-display);
+  font-weight:500;font-size:20px;line-height:1.1;margin:0;
+  letter-spacing:-.01em;color:var(--chrome-ink);
+  white-space:nowrap;
+}
+.eyebrow{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--chrome-muted);white-space:nowrap;
+}
+.counts{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.09em;
+  color:var(--chrome-muted);margin-left:auto;white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.tools{display:flex;gap:6px;flex:0 0 auto}
+.btn{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;
+  background:var(--chrome-2);color:var(--chrome-ink);
+  border:1px solid var(--chrome-line);border-radius:4px;
+  padding:7px 11px;cursor:pointer;
+}
+.btn:hover{background:#302C28;border-color:#4A443E}
+.btn:focus-visible{outline:2px solid var(--r-nurse);outline-offset:2px}
+
+.main{display:flex;flex:1 1 auto;min-height:0}
+
+/* ---------- rail ---------- */
+.rail{
+  width:238px;flex:0 0 238px;
+  background:var(--chrome);
+  border-right:1px solid var(--chrome-line);
+  overflow-y:auto;padding:16px 14px 28px;
+}
+.rail h2{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--chrome-muted);
+  margin:0 0 10px;font-weight:500;
+}
+.rail section + section{margin-top:24px;padding-top:20px;border-top:1px solid var(--chrome-line)}
+
+.phase-list{display:flex;flex-direction:column;gap:1px}
+.phase-btn{
+  display:flex;align-items:center;gap:9px;width:100%;
+  background:none;border:0;border-radius:4px;
+  padding:7px 8px;cursor:pointer;text-align:left;color:var(--chrome-ink);
+  font-family:var(--font-sans);font-size:12.5px;line-height:1.25;
+}
+.phase-btn:hover{background:var(--chrome-2)}
+.phase-btn:focus-visible{outline:2px solid var(--r-nurse);outline-offset:-2px}
+.phase-btn .num{
+  font-family:var(--font-mono);font-size:9.5px;color:var(--chrome-muted);
+  flex:0 0 20px;letter-spacing:.04em;
+}
+.phase-btn .swatch{width:3px;height:22px;border-radius:2px;flex:0 0 3px}
+.phase-btn .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px}
+.legend div{
+  display:flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--chrome-ink);
+}
+.legend .dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px}
+.legend .sq{width:9px;height:9px;flex:0 0 9px;border:1.5px solid var(--chrome-muted)}
+.legend .sq.gap{border-style:dashed;border-color:#D4735C}
+.legend .sq.dec{transform:rotate(45deg);border-color:#C9A24B;width:8px;height:8px;flex-basis:8px}
+.legend .sq.end{background:var(--chrome-ink);border-color:var(--chrome-ink);border-radius:50%}
+
+.minimap-wrap{display:flex;justify-content:center}
+.minimap{
+  position:relative;cursor:pointer;
+  border:1px solid var(--chrome-line);border-radius:3px;
+  background:#0F0E0D;line-height:0;
+}
+.minimap canvas{display:block;border-radius:2px}
+.mm-view{
+  position:absolute;border:1.5px solid #E8B23C;
+  background:rgba(232,178,60,.14);pointer-events:none;border-radius:1px;
+}
+
+/* ---------- canvas ---------- */
+.viewport{
+  flex:1 1 auto;position:relative;overflow:hidden;
+  background:
+    linear-gradient(var(--paper-grid) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,var(--paper-grid) 1px,transparent 1px) 0 0/40px 40px,
+    var(--paper);
+  cursor:grab;
+}
+.viewport.dragging{cursor:grabbing}
+.canvas{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+.layer{position:absolute;top:0;left:0}
+#edges{overflow:visible;pointer-events:none}
+
+/* ---------- bands ---------- */
+.band{
+  position:absolute;border-radius:9px;
+  border:1px solid var(--rule);
+  border-left-width:4px;
+}
+.band-hd{
+  position:absolute;top:-13px;left:16px;
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:5px;padding:4px 12px;white-space:nowrap;
+}
+.band-hd .t{
+  font-family:var(--font-display);font-size:14.5px;font-weight:600;
+  color:var(--ink);letter-spacing:-.005em;
+}
+.band-hd .o{
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- nodes ---------- */
+.n{
+  position:absolute;
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-radius:5px;
+  padding:9px 11px 10px;
+  box-shadow:0 1px 0 rgba(36,32,29,.05),0 2px 6px rgba(36,32,29,.05);
+  color:var(--ink);
+}
+.n .role{
+  display:block;
+  font-family:var(--font-mono);font-size:8px;letter-spacing:.15em;
+  text-transform:uppercase;margin-bottom:5px;font-weight:500;
+}
+.n .lbl{font-size:12px;line-height:1.32;font-weight:500;text-wrap:balance}
+.n ul{margin:7px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px}
+.n li{
+  font-size:10.5px;line-height:1.35;color:var(--muted);
+  padding-left:9px;position:relative;
+}
+.n li::before{
+  content:"";position:absolute;left:0;top:.52em;
+  width:4px;height:1px;background:var(--rule);
+}
+.n .ext{
+  display:inline-block;margin-top:8px;
+  font-family:var(--font-mono);font-size:7.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#8A6A3A;
+  border:1px solid #E0CFA8;background:#FBF4E4;
+  border-radius:3px;padding:2px 5px;
+}
+
+.n-start{
+  background:#EAF2EE;border-color:#9DBFB0;border-radius:22px;
+  padding:11px 16px;
+}
+.n-end{
+  background:var(--ink);border-color:var(--ink);color:var(--card);
+  border-radius:22px;padding:11px 16px;
+}
+.n-end .lbl{color:var(--card)}
+
+.n-decision{
+  background:#FBF3DC;border-color:#C9A24B;
+  clip-path:polygon(13px 0,calc(100% - 13px) 0,100% 13px,100% calc(100% - 13px),
+    calc(100% - 13px) 100%,13px 100%,0 calc(100% - 13px),0 13px);
+  padding:12px 15px;box-shadow:none;
+}
+.n-decision .lbl::before{content:"◆  ";color:#A47C1B;font-size:9px;vertical-align:2px}
+
+.n-note{
+  background:var(--info-bg);border:1px dashed var(--info);
+  box-shadow:none;
+}
+.n-note .tag{
+  display:block;font-family:var(--font-mono);font-size:8px;
+  letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:5px;font-weight:500;color:var(--info);
+}
+.n-note .lbl{font-weight:500;font-size:11.5px}
+.n-note li::before{background:currentColor;opacity:.35}
+.n-note.warn{background:var(--warn-bg);border-color:var(--warn);color:#5C2416}
+.n-note.warn .tag{color:var(--warn)}
+.n-note.warn li{color:#7A3B2A}
+.n-note.success{background:var(--success-bg);border-color:var(--success)}
+.n-note.success .tag{color:var(--success)}
+
+/* ---------- edge labels ---------- */
+.elabel{
+  position:absolute;transform:translate(-50%,-50%);
+  font-family:var(--font-mono);font-size:9px;letter-spacing:.05em;
+  background:var(--paper);color:#4A423B;
+  border:1px solid var(--rule);border-radius:3px;
+  padding:2px 6px;white-space:nowrap;pointer-events:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+
+@media (max-width:820px){
+  .rail{display:none}
+  .brand h1{font-size:16px}
+  .eyebrow,.counts{display:none}
+}
+
+/* ================= edit mode ================= */
+.btn.on{background:#8A6A2A;border-color:#C9A24B;color:#FFF7E4}
+.viewport.linking{cursor:crosshair}
+.n.editable{cursor:move}
+.n.sel{outline:2px solid #E8B23C;outline-offset:3px}
+.n.linksrc{outline:2px dashed #1E5F4B;outline-offset:3px}
+.ehit{stroke:transparent;stroke-width:14;fill:none;pointer-events:stroke;cursor:pointer}
+.epath.sel{stroke:#E8B23C!important;stroke-width:3!important}
+
+.inspector{
+  width:298px;flex:0 0 298px;background:var(--chrome);
+  border-left:1px solid var(--chrome-line);
+  overflow-y:auto;padding:16px 16px 40px;
+}
+.inspector h2{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--chrome-muted);margin:0 0 4px;font-weight:500;
+}
+.insp-id{
+  font-family:var(--font-mono);font-size:10px;color:#7E756A;
+  margin-bottom:16px;word-break:break-all;
+}
+.fld{margin-bottom:13px}
+.fld label{
+  display:block;font-family:var(--font-mono);font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--chrome-muted);margin-bottom:5px;
+}
+.fld input[type=text],.fld textarea,.fld select{
+  width:100%;background:#141312;color:var(--chrome-ink);
+  border:1px solid var(--chrome-line);border-radius:4px;
+  padding:7px 8px;font-family:var(--font-sans);font-size:12px;line-height:1.4;
+}
+.fld textarea{resize:vertical;min-height:56px}
+.fld input:focus,.fld textarea:focus,.fld select:focus{
+  outline:none;border-color:#C9A24B;
+}
+.fld.row{display:flex;align-items:center;gap:8px}
+.fld.row label{margin:0;text-transform:none;letter-spacing:.03em;font-size:11px;font-family:var(--font-sans);color:var(--chrome-ink)}
+.fld.row input[type=checkbox]{width:auto;accent-color:#C9A24B}
+.insp-actions{display:flex;gap:6px;margin-top:18px}
+.btn.danger{border-color:#7A3428;color:#E8A092}
+.btn.danger:hover{background:#3A1D18}
+.btn.wide{flex:1;text-align:center}
+.hint{font-size:11px;line-height:1.5;color:var(--chrome-muted)}
+.hint b{color:var(--chrome-ink);font-weight:500}
+.hint code{
+  font-family:var(--font-mono);font-size:10px;background:#141312;
+  border:1px solid var(--chrome-line);border-radius:3px;padding:1px 4px;
+}
+
+.modal{
+  position:fixed;inset:0;background:rgba(10,9,8,.72);
+  display:flex;align-items:center;justify-content:center;z-index:50;padding:32px;
+}
+.modal[hidden]{display:none}
+.modal-box{
+  background:var(--chrome);border:1px solid var(--chrome-line);border-radius:8px;
+  width:min(760px,100%);max-height:100%;display:flex;flex-direction:column;padding:20px;
+}
+.modal-box h3{
+  font-family:var(--font-display);font-size:18px;font-weight:500;
+  margin:0 0 6px;color:var(--chrome-ink);
+}
+.modal-box p{margin:0 0 14px;font-size:12px;line-height:1.55;color:var(--chrome-muted)}
+.modal-box textarea{
+  flex:1;min-height:280px;background:#141312;color:#CFC7BB;
+  border:1px solid var(--chrome-line);border-radius:5px;padding:11px;
+  font-family:var(--font-mono);font-size:11px;line-height:1.5;resize:none;
+}
+.modal-actions{display:flex;gap:7px;margin-top:14px;justify-content:flex-end}
+
+/* ================= scrollbars ================= */
+.sbar{
+  position:absolute;z-index:6;
+  background:rgba(36,32,29,.05);
+  border:0 solid rgba(36,32,29,.12);
+}
+.sbar[hidden]{display:none}
+.sbar-v{top:0;right:0;bottom:15px;width:15px;border-left-width:1px;cursor:default}
+.sbar-h{left:0;right:15px;bottom:0;height:15px;border-top-width:1px;cursor:default}
+.sthumb{
+  position:absolute;border-radius:8px;
+  background:#9A9184;border:1px solid rgba(36,32,29,.18);
+  cursor:grab;
+}
+.sthumb:hover{background:#7C7367}
+.sthumb.drag{background:#544D45;cursor:grabbing}
+.sbar-v .sthumb{left:3px;right:3px;min-height:32px}
+.sbar-h .sthumb{top:3px;bottom:3px;min-width:32px}
+.sbar-corner{
+  position:absolute;right:0;bottom:0;width:15px;height:15px;z-index:6;
+  background:rgba(36,32,29,.05);
+  border-left:1px solid rgba(36,32,29,.12);
+  border-top:1px solid rgba(36,32,29,.12);
+}
+.sbar-corner[hidden]{display:none}
+
+.railhint{
+  margin:12px 0 0;text-align:center;
+  font-size:10.5px;line-height:1.6;color:var(--chrome-muted);
+}
+.railhint b{
+  font-family:var(--font-mono);font-size:9.5px;color:var(--chrome-ink);
+  border:1px solid var(--chrome-line);border-radius:3px;padding:1px 4px;font-weight:500;
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="eyebrow">Field Visit · Front Desk Research</span>
+      <h1>Ovum Kalyan Nagar</h1>
+    </div>
+    <div class="counts" id="counts"></div>
+    <div class="tools" id="editTools" hidden>
+      <button class="btn" id="addnode" type="button">New card</button>
+      <button class="btn" id="undo" type="button">Undo</button>
+      <button class="btn" id="export" type="button">Export JSON</button>
+      <button class="btn" id="savehtml" type="button">Save copy</button>
+    </div>
+    <div class="tools">
+      <button class="btn" id="edit" type="button">Edit</button>
+      <button class="btn" id="top" type="button">Top</button>
+      <button class="btn" id="fit" type="button">Fit all</button>
+      <button class="btn" id="zout" type="button">&minus;</button>
+      <button class="btn" id="zin" type="button">+</button>
+    </div>
+  </header>
+  <div class="main">
+    <aside class="rail">
+      <section>
+        <h2>Jump to phase</h2>
+        <div class="phase-list" id="phaseList"></div>
+      </section>
+      <section>
+        <h2>Who does it</h2>
+        <div class="legend" id="legendRoles"></div>
+      </section>
+      <section>
+        <h2>Node types</h2>
+        <div class="legend">
+          <div><span class="sq" style="border-color:#9DBFB0;background:#EAF2EE"></span>Start</div>
+          <div><span class="sq end"></span>End</div>
+          <div><span class="sq dec"></span>Decision</div>
+          <div><span class="sq"></span>Step</div>
+          <div><span class="sq gap"></span>Gap</div>
+          <div><span class="sq" style="border-style:dashed;border-color:#3D5580"></span>Note</div>
+        </div>
+      </section>
+      <section>
+        <h2>Overview</h2>
+        <div class="minimap-wrap">
+          <div class="minimap"><canvas id="mm"></canvas><div class="mm-view" id="mmView"></div></div>
+        </div>
+        <p class="railhint">Scroll to move up and down<br><b>Shift</b> + scroll to move sideways<br><b>Ctrl</b> + scroll to zoom</p>
+      </section>
+    </aside>
+    <div class="viewport" id="vp">
+      <div class="canvas" id="canvas">
+        <div class="layer" id="bands"></div>
+        <svg class="layer" id="edges" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="layer" id="labels"></div>
+        <div class="layer" id="nodes"></div>
+      </div>
+      <div class="sbar sbar-v" id="sbv"><div class="sthumb" id="sbvt"></div></div>
+      <div class="sbar sbar-h" id="sbh"><div class="sthumb" id="sbht"></div></div>
+      <div class="sbar-corner" id="sbc"></div>
+    </div>
+    <aside class="inspector" id="inspector" hidden></aside>
+  </div>
+</div>
+<div class="modal" id="modal" hidden>
+  <div class="modal-box">
+    <h3 id="mTitle"></h3>
+    <p id="mNote"></p>
+    <textarea id="mText" readonly spellcheck="false"></textarea>
+    <div class="modal-actions">
+      <button class="btn" id="mCopy" type="button">Copy</button>
+      <button class="btn" id="mDownload" type="button">Download</button>
+      <button class="btn" id="mClose" type="button">Close</button>
+    </div>
+  </div>
+</div>
+<script id="flowdata">const FLOW_DATA={
+  "nodes": [
+    {
+      "id": "ph-1",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 0
+      },
+      "data": {
+        "label": "01 · Doctor Schedule Setup (day before)",
+        "owner": "Doctor / Reception",
+        "accent": "#DCE4F3",
+        "stroke": "#2E4A7B"
+      }
+    },
+    {
+      "id": "ph-2",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 800
+      },
+      "data": {
+        "label": "02 · Appointment Booking",
+        "owner": "Reception / Call Center",
+        "accent": "#FBE8DE",
+        "stroke": "#C96A4A"
+      }
+    },
+    {
+      "id": "ph-3",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 1560
+      },
+      "data": {
+        "label": "03 · Day of Visit: Reminders, Arrival & Routing",
+        "owner": "Reception / Patient",
+        "accent": "#FBE8DE",
+        "stroke": "#C96A4A"
+      }
+    },
+    {
+      "id": "ph-4",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 2720
+      },
+      "data": {
+        "label": "04 · Patient Registration & UHID",
+        "owner": "Reception",
+        "accent": "#FBE8DE",
+        "stroke": "#C96A4A"
+      }
+    },
+    {
+      "id": "ph-5",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 3680
+      },
+      "data": {
+        "label": "05 · Billing & Payment",
+        "owner": "Reception / Billing",
+        "accent": "#FBE8DE",
+        "stroke": "#C96A4A"
+      }
+    },
+    {
+      "id": "ph-6",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 5210
+      },
+      "data": {
+        "label": "06 · Vitals & Doctor Consultation",
+        "owner": "Nurse / Doctor",
+        "accent": "#DCE4F3",
+        "stroke": "#2E4A7B"
+      }
+    },
+    {
+      "id": "ph-7",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 6780
+      },
+      "data": {
+        "label": "07 · Scans, Labs & Radiology",
+        "owner": "Reception · Nurse · Partner Labs",
+        "accent": "#F5EACB",
+        "stroke": "#A47C1B"
+      }
+    },
+    {
+      "id": "ph-8",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 8070
+      },
+      "data": {
+        "label": "08 · Exceptions: Doctor Change · Refund · Reschedule",
+        "owner": "Reception",
+        "accent": "#FBE8DE",
+        "stroke": "#C96A4A"
+      }
+    },
+    {
+      "id": "ph-9",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 8930
+      },
+      "data": {
+        "label": "09 · End of Day & Management Reporting",
+        "owner": "Reception",
+        "accent": "#FBE8DE",
+        "stroke": "#C96A4A"
+      }
+    },
+    {
+      "id": "ph-s1",
+      "type": "phase",
+      "position": {
+        "x": 1150,
+        "y": 1560
+      },
+      "data": {
+        "label": "S1 · Pediatric Department (parallel)",
+        "owner": "Reception · Nurse · Doctor",
+        "accent": "#D6EAE0",
+        "stroke": "#1E5F4B",
+        "compact": true
+      }
+    },
+    {
+      "id": "ph-s2",
+      "type": "phase",
+      "position": {
+        "x": 1150,
+        "y": 6500
+      },
+      "data": {
+        "label": "S2 · PR Counselling → IPD Delivery (Gynaecology)",
+        "owner": "PR / IP Team",
+        "accent": "#D6EAE0",
+        "stroke": "#1E5F4B",
+        "compact": true
+      }
+    },
+    {
+      "id": "ph-r",
+      "type": "phase",
+      "position": {
+        "x": 10,
+        "y": 9600
+      },
+      "data": {
+        "label": "R · Excel & Paper Registers (off-flow reference)",
+        "owner": "Reception · Nurse · PR",
+        "accent": "#EDEAE3",
+        "stroke": "#5B5550",
+        "compact": true
+      }
+    },
+    {
+      "id": "sch-start",
+      "type": "start",
+      "position": {
+        "x": 50,
+        "y": 100
+      },
+      "data": {
+        "label": "Day before: front desk plans the next day",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "sch-ask",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 230
+      },
+      "data": {
+        "label": "Doctor tells which times they are available and not available",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "sch-excel",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 360
+      },
+      "data": {
+        "label": "Front desk builds the Doctor Availability Excel",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "sch-send",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 490
+      },
+      "data": {
+        "label": "Excel sent to the 24/7 Call Center",
+        "role": "reception",
+        "items": [
+          "Call center books slots from this sheet"
+        ]
+      }
+    },
+    {
+      "id": "sch-gap-franchise",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 230
+      },
+      "data": {
+        "label": "Gap: other Ovum branches can book and block this calendar",
+        "tone": "warn",
+        "items": [
+          "This hospital cannot book its own free doctor's slot",
+          "Issue repeats, other branches are unaware"
+        ]
+      }
+    },
+    {
+      "id": "sch-note-manual",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 430
+      },
+      "data": {
+        "label": "The whole schedule handover is manual",
+        "tone": "info",
+        "items": [
+          "Excel rebuilt by hand every evening",
+          "Shared over WhatsApp and phone"
+        ]
+      }
+    },
+    {
+      "id": "bk-mode",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 900
+      },
+      "data": {
+        "label": "How does the patient book?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "bk-app",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 1060
+      },
+      "data": {
+        "label": "Booked online on the Ovum App",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "bk-walk",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 1060
+      },
+      "data": {
+        "label": "Walk-in · no prior booking",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "bk-call",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 1060
+      },
+      "data": {
+        "label": "24/7 Call Center books in Eka Care",
+        "role": "reception",
+        "items": [
+          "Patient asks which doctors and slots are free",
+          "Tele staff refer the Doctor Availability Excel"
+        ]
+      }
+    },
+    {
+      "id": "bk-tab",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 1270
+      },
+      "data": {
+        "label": "Appointment appears in Eka Care booked tab",
+        "role": "system"
+      }
+    },
+    {
+      "id": "bk-note-outside",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 1040
+      },
+      "data": {
+        "label": "Outside booking sources",
+        "tone": "info",
+        "items": [
+          "Practo and Quickwell used heavily",
+          "Medibuddy: cashless, hospital paid by Medibuddy",
+          "Patient is not charged for Medibuddy cases"
+        ]
+      }
+    },
+    {
+      "id": "bk-gap-update",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 1250
+      },
+      "data": {
+        "label": "Gap: no notification before Eka Care UI updates",
+        "tone": "warn",
+        "items": [
+          "Receptionists get confused after each change"
+        ]
+      }
+    },
+    {
+      "id": "arr-remind",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 1660
+      },
+      "data": {
+        "label": "Front desk makes manual reminder calls to today's patients",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "arr-list",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 1790
+      },
+      "data": {
+        "label": "Day's booked list sent to each doctor on WhatsApp or call",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "arr-start",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 1930
+      },
+      "data": {
+        "label": "Patient arrives at Ovum Kalyan Nagar",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "arr-dept",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 2060
+      },
+      "data": {
+        "label": "Which department?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "arr-ivf",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 2220
+      },
+      "data": {
+        "label": "IVF Department",
+        "role": "doctor",
+        "items": [
+          "Non-pregnant patients",
+          "Runs on Medix, not the Eka Care EMR"
+        ],
+        "integration": true
+      }
+    },
+    {
+      "id": "arr-gyn",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 2220
+      },
+      "data": {
+        "label": "Gynaecology Department (OPD)",
+        "role": "reception",
+        "items": [
+          "Pregnant patients: consultations and scans",
+          "Eka Care for booking/EMR · Akhil for billing"
+        ]
+      }
+    },
+    {
+      "id": "arr-ped",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 2220
+      },
+      "data": {
+        "label": "Pediatric Department",
+        "role": "reception",
+        "items": [
+          "Newborn and child care",
+          "Eka Care for Rx · Akhil for billing"
+        ]
+      }
+    },
+    {
+      "id": "arr-conceive",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 2440
+      },
+      "data": {
+        "label": "Patient conceives · moves to Gynaecology",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "arr-note-medix",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 2200
+      },
+      "data": {
+        "label": "IVF runs outside Eka Care",
+        "tone": "warn",
+        "items": [
+          "Staff find Medix more UX friendly",
+          "Eka Care EMR is found complex for IVF"
+        ]
+      }
+    },
+    {
+      "id": "arr-note-uhid",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 2380
+      },
+      "data": {
+        "label": "One UHID across all systems",
+        "tone": "info",
+        "items": [
+          "Same UHID used in Eka Care, Medix and Akhil"
+        ]
+      }
+    },
+    {
+      "id": "arr-note-rush",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 2540
+      },
+      "data": {
+        "label": "Peak load pattern",
+        "tone": "info",
+        "items": [
+          "Rush on Mon, Wed, Thu (hearing aid checkup days)",
+          "Rush on Saturday (weekend)"
+        ]
+      }
+    },
+    {
+      "id": "reg-new",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 2820
+      },
+      "data": {
+        "label": "New patient?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "reg-form",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 2980
+      },
+      "data": {
+        "label": "Patient fills handwritten Registration Form",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "reg-existing",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 2980
+      },
+      "data": {
+        "label": "Search existing patient in Eka Care",
+        "role": "reception",
+        "items": [
+          "Searched by mobile number"
+        ]
+      }
+    },
+    {
+      "id": "reg-excel",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 3110
+      },
+      "data": {
+        "label": "Front desk keys details into Registration Excel",
+        "role": "reception",
+        "items": [
+          "Serial number · Date · Time of coming",
+          "Patient name · Source of visit",
+          "Contact number · Mode of appointment",
+          "Consultation doctor · Pregnant or not pregnant",
+          "Conversion type · Updated by"
+        ]
+      }
+    },
+    {
+      "id": "reg-uhid",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 3400
+      },
+      "data": {
+        "label": "UHID generated from the paper form",
+        "role": "system",
+        "items": [
+          "UHID is reused in Eka Care, Medix and Akhil"
+        ]
+      }
+    },
+    {
+      "id": "reg-gap-dup",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 2960
+      },
+      "data": {
+        "label": "Gap: duplicate names under one mobile number",
+        "tone": "warn",
+        "items": [
+          "All family members listed on a number search",
+          "Names stay distinct even after merging"
+        ]
+      }
+    },
+    {
+      "id": "reg-gap-paper",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 3140
+      },
+      "data": {
+        "label": "Gap: registration is a paper form",
+        "tone": "warn",
+        "items": [
+          "UHID is generated off a handwritten form"
+        ]
+      }
+    },
+    {
+      "id": "reg-note-abha",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 3300
+      },
+      "data": {
+        "label": "ABHA is not used at this centre",
+        "tone": "info",
+        "items": [
+          "Small OPDs use UHID, big hospitals use ABHA",
+          "Reason given: UHID is easier to manage"
+        ]
+      }
+    },
+    {
+      "id": "bil-counter",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 3780
+      },
+      "data": {
+        "label": "Patient reaches billing counter (Akhil)",
+        "role": "reception",
+        "items": [
+          "Akhil in use since the hospital started"
+        ],
+        "integration": true
+      }
+    },
+    {
+      "id": "bil-mode",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 3930
+      },
+      "data": {
+        "label": "Payment mode?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "bil-cash",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 4090
+      },
+      "data": {
+        "label": "Cash paid at the counter",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "bil-card",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 4090
+      },
+      "data": {
+        "label": "Card or UPI through Pine Labs",
+        "role": "patient",
+        "items": [
+          "Pine Labs generates the Transaction ID"
+        ],
+        "integration": true
+      }
+    },
+    {
+      "id": "bil-online",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 4090
+      },
+      "data": {
+        "label": "Already paid online",
+        "role": "patient",
+        "items": [
+          "Patient shows WhatsApp message",
+          "and a screenshot of payment received"
+        ]
+      }
+    },
+    {
+      "id": "bil-txn",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 4300
+      },
+      "data": {
+        "label": "Staff manually type Transaction ID into Akhil",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "bil-disc",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 4440
+      },
+      "data": {
+        "label": "Discount to be applied?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "bil-logout",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 4600
+      },
+      "data": {
+        "label": "Log out of own Akhil ID · log in on discount ID · apply · log back in",
+        "role": "reception",
+        "items": [
+          "Two logins for the same patient"
+        ]
+      }
+    },
+    {
+      "id": "bil-normal",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 4600
+      },
+      "data": {
+        "label": "Bill raised on own Akhil user ID",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "bil-receipt",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 4800
+      },
+      "data": {
+        "label": "Akhil generates fee slip and receipt",
+        "role": "system"
+      }
+    },
+    {
+      "id": "bil-wa",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 4930
+      },
+      "data": {
+        "label": "Automated WhatsApp message sent on payment",
+        "role": "system",
+        "integration": true
+      }
+    },
+    {
+      "id": "bil-note-akhil",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 3780
+      },
+      "data": {
+        "label": "Billing runs on Akhil, not Eka Care",
+        "tone": "info",
+        "items": [
+          "Invoicing, insurance and revenue reports",
+          "All three front desks use it"
+        ]
+      }
+    },
+    {
+      "id": "bil-gap-login",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 4580
+      },
+      "data": {
+        "label": "Gap: double login for every discount",
+        "tone": "warn",
+        "items": [
+          "Separate user ID needed only for discounts",
+          "Repeated for each discounted bill"
+        ]
+      }
+    },
+    {
+      "id": "bil-gap-amount",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 4760
+      },
+      "data": {
+        "label": "Gap: discount amount mismatch on WhatsApp",
+        "tone": "warn",
+        "items": [
+          "₹1,000 fee with 10% off should be ₹900",
+          "Messages seen showing ₹720, ₹650 and ₹800"
+        ]
+      }
+    },
+    {
+      "id": "bil-gap-link",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 4940
+      },
+      "data": {
+        "label": "Gap: payment link expires after 60 minutes",
+        "tone": "warn"
+      }
+    },
+    {
+      "id": "cons-bill",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 5310
+      },
+      "data": {
+        "label": "Patient carries the paid bill to the nurse",
+        "role": "patient",
+        "items": [
+          "The bill is the proof of payment",
+          "Nurse will not take vitals without it"
+        ]
+      }
+    },
+    {
+      "id": "cons-rush",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 5510
+      },
+      "data": {
+        "label": "Is it rush hour?",
+        "role": "nurse"
+      }
+    },
+    {
+      "id": "cons-nurse",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 5670
+      },
+      "data": {
+        "label": "Nurse takes vitals and enters them in Eka Care EMR",
+        "role": "nurse"
+      }
+    },
+    {
+      "id": "cons-doc-vitals",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 5670
+      },
+      "data": {
+        "label": "Doctor enters the vitals himself in Eka Care EMR",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "cons-room",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 5840
+      },
+      "data": {
+        "label": "Doctor consultation",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "cons-rx",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 5970
+      },
+      "data": {
+        "label": "Doctor uses Eka Care for Rx?",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "cons-rx-eka",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 6130
+      },
+      "data": {
+        "label": "Rx written in Eka Care",
+        "role": "doctor",
+        "items": [
+          "Some doctors also add vaccine data in the Rx"
+        ]
+      }
+    },
+    {
+      "id": "cons-rx-out",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 6130
+      },
+      "data": {
+        "label": "Senior doctor writes Rx outside Eka Care",
+        "role": "doctor",
+        "items": [
+          "Vaccine data cannot be captured for these"
+        ]
+      }
+    },
+    {
+      "id": "cons-next",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 6330
+      },
+      "data": {
+        "label": "What next?",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "cons-home",
+      "type": "end",
+      "position": {
+        "x": -320,
+        "y": 6500
+      },
+      "data": {
+        "label": "Home with Rx"
+      }
+    },
+    {
+      "id": "cons-note-ped",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 5310
+      },
+      "data": {
+        "label": "Vitals are digital in Gynaecology OPD only",
+        "tone": "info",
+        "items": [
+          "In Pediatric the nurse writes vitals on paper",
+          "See the S1 lane"
+        ]
+      }
+    },
+    {
+      "id": "cons-gap-queue",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 5490
+      },
+      "data": {
+        "label": "Gap: Custom Queue feature unknown to staff",
+        "tone": "warn",
+        "items": [
+          "Both front desks were never told about it",
+          "Pediatric staff asked if Eka Care does billing"
+        ]
+      }
+    },
+    {
+      "id": "cons-gap-rx",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 6110
+      },
+      "data": {
+        "label": "Gap: Rx adoption is inconsistent",
+        "tone": "warn",
+        "items": [
+          "Some older doctors decline Eka Care Rx",
+          "Vaccine data captured only when Eka Rx is used"
+        ]
+      }
+    },
+    {
+      "id": "cons-note-walk",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 6290
+      },
+      "data": {
+        "label": "Doctor checks the next patient in person",
+        "tone": "info",
+        "items": [
+          "Walks to the front desk during the day",
+          "Staff call the patient to confirm",
+          "If the patient is not coming, the doctor leaves"
+        ]
+      }
+    },
+    {
+      "id": "sl-type",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 6880
+      },
+      "data": {
+        "label": "Scan, Lab test or Radiology?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "sl-scan-bill",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 7040
+      },
+      "data": {
+        "label": "Bill raised at reception in Akhil first",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "sl-radio",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 7040
+      },
+      "data": {
+        "label": "Radiology: slot must be booked in advance",
+        "role": "reception",
+        "items": [
+          "No walk-ins accepted at all"
+        ]
+      }
+    },
+    {
+      "id": "sl-lab-rx",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 7040
+      },
+      "data": {
+        "label": "Doctor notes the test in Rx and tells the nurse",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "sl-scan",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 7170
+      },
+      "data": {
+        "label": "Paid bill shown at Scan Department",
+        "role": "nurse",
+        "items": [
+          "Runs on sonogram software"
+        ],
+        "integration": true
+      }
+    },
+    {
+      "id": "sl-lab-bill",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 7170
+      },
+      "data": {
+        "label": "Billing done before the sample is taken",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "sl-scan-rep",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 7340
+      },
+      "data": {
+        "label": "Scan report collected immediately",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "sl-lab-sample",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 7300
+      },
+      "data": {
+        "label": "Nurse contacts the lab and collects the sample",
+        "role": "nurse"
+      }
+    },
+    {
+      "id": "sl-lab-agent",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 7430
+      },
+      "data": {
+        "label": "Agent from the partner lab picks up the sample",
+        "role": "pharmacist",
+        "items": [
+          "3i Molecular · Metaomics · Ananda Lab",
+          "Equity Lab · Lilac"
+        ],
+        "integration": true
+      }
+    },
+    {
+      "id": "sl-lab-rep",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 7630
+      },
+      "data": {
+        "label": "Lab sends the report to the patient on WhatsApp",
+        "role": "system",
+        "integration": true
+      }
+    },
+    {
+      "id": "sl-converge",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 7790
+      },
+      "data": {
+        "label": "Patient leaves or returns for follow-up",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "sl-gap-track",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 7410
+      },
+      "data": {
+        "label": "Gap: sample pickup and report delivery are untracked",
+        "tone": "warn",
+        "items": [
+          "No record is kept anywhere in the hospital",
+          "Only the doctor's Rx entry exists"
+        ]
+      }
+    },
+    {
+      "id": "sl-note-farz",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 7590
+      },
+      "data": {
+        "label": "Stated by Farz (Corporate Officer)",
+        "tone": "info",
+        "items": [
+          "Hospital would like scan report integration in Eka Care"
+        ]
+      }
+    },
+    {
+      "id": "oth-type",
+      "type": "decision",
+      "position": {
+        "x": 50,
+        "y": 8170
+      },
+      "data": {
+        "label": "Any exception raised?",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "oth-change",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 8330
+      },
+      "data": {
+        "label": "Patient wants to change the doctor",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "oth-refund",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 8330
+      },
+      "data": {
+        "label": "Doctor not available within the next one hour",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "oth-resched",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 8330
+      },
+      "data": {
+        "label": "Reschedule or follow-up patient is present",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "oth-form",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 8460
+      },
+      "data": {
+        "label": "Signed Change of Doctor form taken as consent proof",
+        "role": "reception",
+        "items": [
+          "Front desk cannot tell the doctor verbally"
+        ]
+      }
+    },
+    {
+      "id": "oth-refund2",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 8470
+      },
+      "data": {
+        "label": "Patient cancels and claims refund",
+        "role": "reception",
+        "items": [
+          "Logged in the Refund and Discount Excel"
+        ]
+      }
+    },
+    {
+      "id": "oth-fcfs",
+      "type": "step",
+      "position": {
+        "x": 420,
+        "y": 8460
+      },
+      "data": {
+        "label": "Seen next on first come first serve",
+        "role": "reception",
+        "items": [
+          "Does not wait for the scheduled patient's turn"
+        ]
+      }
+    },
+    {
+      "id": "oth-change-excel",
+      "type": "step",
+      "position": {
+        "x": -320,
+        "y": 8650
+      },
+      "data": {
+        "label": "Entry logged in the Doctor Change Excel",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "oth-gap-notify",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 8310
+      },
+      "data": {
+        "label": "Gap: no notification when a doctor leaves suddenly",
+        "tone": "warn",
+        "items": [
+          "Patient gets no message",
+          "Staff cannot act on it",
+          "Patients get angry with front desk"
+        ]
+      }
+    },
+    {
+      "id": "oth-gap-feedback",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 8520
+      },
+      "data": {
+        "label": "Gap: feedback form is handwritten only",
+        "tone": "warn",
+        "items": [
+          "No online feedback form is registered"
+        ]
+      }
+    },
+    {
+      "id": "eod-report",
+      "type": "step",
+      "position": {
+        "x": 50,
+        "y": 9030
+      },
+      "data": {
+        "label": "End of Day report sent to Management WhatsApp group",
+        "role": "reception",
+        "items": [
+          "New patient list shared with the doctor",
+          "End of Day Billing Excel",
+          "New patients · Total patients · Vaccines given"
+        ]
+      }
+    },
+    {
+      "id": "eod-end",
+      "type": "end",
+      "position": {
+        "x": 50,
+        "y": 9280
+      },
+      "data": {
+        "label": "Day closed"
+      }
+    },
+    {
+      "id": "eod-note-reports",
+      "type": "note",
+      "position": {
+        "x": 780,
+        "y": 9030
+      },
+      "data": {
+        "label": "Reports are split across two systems",
+        "tone": "info",
+        "items": [
+          "Patient analytics from Eka Care",
+          "Revenue and payment reports from Akhil"
+        ]
+      }
+    },
+    {
+      "id": "pd-book",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 1660
+      },
+      "data": {
+        "label": "Booking: online · call center (Eka Care) · walk-in",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "pd-reg",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 1790
+      },
+      "data": {
+        "label": "New patient given the Registration Form",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "pd-excel",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 1920
+      },
+      "data": {
+        "label": "Details entered into the Excel sheet",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "pd-file",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 2050
+      },
+      "data": {
+        "label": "Physical hospital file created",
+        "role": "reception",
+        "items": [
+          "Name · UHID · Address · Phone written on the file",
+          "Holds all documents and prescriptions"
+        ]
+      }
+    },
+    {
+      "id": "pd-bill",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 2250
+      },
+      "data": {
+        "label": "Billing in Akhil, same as Gynaecology OPD",
+        "role": "reception",
+        "items": [
+          "Pine Labs Transaction ID copied by hand",
+          "Log out and log in again for any discount"
+        ],
+        "integration": true
+      }
+    },
+    {
+      "id": "pd-nurse",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 2470
+      },
+      "data": {
+        "label": "Nurse takes vitals and height",
+        "role": "nurse",
+        "items": [
+          "Bill shown as proof of payment"
+        ]
+      }
+    },
+    {
+      "id": "pd-paper",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 2630
+      },
+      "data": {
+        "label": "Nurse writes vitals on paper, nothing entered digitally",
+        "role": "nurse"
+      }
+    },
+    {
+      "id": "pd-doc-enter",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 2770
+      },
+      "data": {
+        "label": "Doctor manually enters the vitals into Eka Care",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "pd-rx",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 2900
+      },
+      "data": {
+        "label": "Doctor writes the Rx in Eka Care",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "pd-lab",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 3030
+      },
+      "data": {
+        "label": "Lab: billing · sample · agent pickup · WhatsApp report",
+        "role": "nurse",
+        "integration": true
+      }
+    },
+    {
+      "id": "pd-vacc",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 3180
+      },
+      "data": {
+        "label": "Vaccination packages explained after delivery",
+        "role": "doctor",
+        "items": [
+          "6 weeks to 1 year",
+          "15 months to 19 months",
+          "Status written by hand in the patient file"
+        ]
+      }
+    },
+    {
+      "id": "pd-treat",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 3400
+      },
+      "data": {
+        "label": "Treatment package and EMI explained",
+        "role": "reception",
+        "items": [
+          "Package cost around ₹45,000",
+          "Installment (EMI) option available"
+        ]
+      }
+    },
+    {
+      "id": "pd-emerg",
+      "type": "decision",
+      "position": {
+        "x": 1150,
+        "y": 3590
+      },
+      "data": {
+        "label": "Doctor pulled into an emergency?",
+        "role": "doctor"
+      }
+    },
+    {
+      "id": "pd-wait",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 3750
+      },
+      "data": {
+        "label": "Checked-in patients told to wait 1 to 2 hours",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "pd-eod",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 3880
+      },
+      "data": {
+        "label": "End of Day report sent to management",
+        "role": "reception",
+        "items": [
+          "New patient list",
+          "End of Day Billing Excel",
+          "New · Total · Vaccines given"
+        ]
+      }
+    },
+    {
+      "id": "pd-end",
+      "type": "end",
+      "position": {
+        "x": 1150,
+        "y": 4100
+      },
+      "data": {
+        "label": "Pediatric day closed"
+      }
+    },
+    {
+      "id": "pd-note-staff",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 1660
+      },
+      "data": {
+        "label": "Pediatric staffing",
+        "tone": "info",
+        "items": [
+          "7 in-hospital doctors",
+          "5 outside doctors"
+        ]
+      }
+    },
+    {
+      "id": "pd-note-insta",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 2230
+      },
+      "data": {
+        "label": "Billing history",
+        "tone": "info",
+        "items": [
+          "Earlier billed on the Insta app",
+          "Later replaced by Akhil"
+        ]
+      }
+    },
+    {
+      "id": "pd-gap-vitals",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 2610
+      },
+      "data": {
+        "label": "Gap: vitals on paper, re-entered by the doctor",
+        "tone": "warn",
+        "items": [
+          "Nurse enters nothing into Eka Care",
+          "The doctor does the data entry"
+        ]
+      }
+    },
+    {
+      "id": "pd-gap-features",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 2880
+      },
+      "data": {
+        "label": "Gap: staff unaware of Eka Care features",
+        "tone": "warn",
+        "items": [
+          "Queues and Custom Queues not known",
+          "Asked whether Eka Care also does billing"
+        ]
+      }
+    },
+    {
+      "id": "pd-gap-emerg",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 3730
+      },
+      "data": {
+        "label": "Gap: patients not yet at the hospital get no message",
+        "tone": "warn",
+        "items": [
+          "Only checked-in patients are informed"
+        ]
+      }
+    },
+    {
+      "id": "pr-list",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 6600
+      },
+      "data": {
+        "label": "PR picks the registration list from the Gynaecology front desk",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "pr-type",
+      "type": "decision",
+      "position": {
+        "x": 1150,
+        "y": 6740
+      },
+      "data": {
+        "label": "Pregnant or non-pregnant?",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "pr-preg",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 6900
+      },
+      "data": {
+        "label": "Counsel on delivery and procedure packages",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "pr-nonpreg",
+      "type": "step",
+      "position": {
+        "x": 1580,
+        "y": 6900
+      },
+      "data": {
+        "label": "Called and shown the package list",
+        "role": "admin",
+        "items": [
+          "Scan books collected to check the due date",
+          "Maintained in a separate Excel"
+        ]
+      }
+    },
+    {
+      "id": "pr-colour",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 7030
+      },
+      "data": {
+        "label": "Tracked in a colour coded Excel",
+        "role": "admin",
+        "items": [
+          "Yellow: day of delivery",
+          "Green: delivery this month",
+          "Yellow: delivery in two months",
+          "Red: miscarriage or discontinued"
+        ]
+      }
+    },
+    {
+      "id": "pr-security",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 7300
+      },
+      "data": {
+        "label": "Patient pays the ₹5,000 security amount",
+        "role": "patient"
+      }
+    },
+    {
+      "id": "pr-ip",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 7430
+      },
+      "data": {
+        "label": "PR informs the IP team",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "pr-bed",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 7560
+      },
+      "data": {
+        "label": "Bed booked 5 days before the delivery date",
+        "role": "admin",
+        "items": [
+          "Patient confirmed on willingness"
+        ]
+      }
+    },
+    {
+      "id": "pr-admit",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 7740
+      },
+      "data": {
+        "label": "Patient admitted into IPD",
+        "role": "reception"
+      }
+    },
+    {
+      "id": "pr-ins",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 7870
+      },
+      "data": {
+        "label": "IP billing team starts insurance processing",
+        "role": "admin",
+        "items": [
+          "IP billing team and insurance team are the same",
+          "Tracks documents and pending approvals"
+        ]
+      }
+    },
+    {
+      "id": "pr-status",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 8080
+      },
+      "data": {
+        "label": "IP team sends daily patient status to doctors on WhatsApp",
+        "role": "nurse",
+        "integration": true
+      }
+    },
+    {
+      "id": "pr-feedback",
+      "type": "step",
+      "position": {
+        "x": 1150,
+        "y": 8230
+      },
+      "data": {
+        "label": "IP team takes feedback from the patient",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "pr-end",
+      "type": "end",
+      "position": {
+        "x": 1150,
+        "y": 8360
+      },
+      "data": {
+        "label": "Delivery done · baby moves to Pediatric"
+      }
+    },
+    {
+      "id": "pr-note-baby",
+      "type": "note",
+      "position": {
+        "x": 1980,
+        "y": 7560
+      },
+      "data": {
+        "label": "Baby package is part of the delivery package",
+        "tone": "info"
+      }
+    },
+    {
+      "id": "pr-gap-manual",
+      "type": "note",
+      "position": {
+        "x": 1980,
+        "y": 7740
+      },
+      "data": {
+        "label": "Gap: IPD runs almost fully manual",
+        "tone": "warn",
+        "items": [
+          "No software used for IPD documents or information",
+          "Akhil used only for billing and insurance"
+        ]
+      }
+    },
+    {
+      "id": "pr-note-wa",
+      "type": "note",
+      "position": {
+        "x": 1980,
+        "y": 8080
+      },
+      "data": {
+        "label": "Automated WhatsApp messages",
+        "tone": "info",
+        "items": [
+          "Sent when payment is done",
+          "Sent when consultation is done"
+        ]
+      }
+    },
+    {
+      "id": "pr-note-events",
+      "type": "note",
+      "position": {
+        "x": 1980,
+        "y": 8230
+      },
+      "data": {
+        "label": "ER / PR team also runs events",
+        "tone": "info",
+        "items": [
+          "Baby carnival, games, free consultations",
+          "On the spot registrations and bookings",
+          "Discounts on offers"
+        ]
+      }
+    },
+    {
+      "id": "reg-r1",
+      "type": "note",
+      "position": {
+        "x": 50,
+        "y": 9700
+      },
+      "data": {
+        "label": "Gynaecology OPD · Registration Excel",
+        "tone": "info",
+        "items": [
+          "Serial number",
+          "Date",
+          "Time of coming",
+          "Patient name",
+          "Source of visit",
+          "Contact number",
+          "Mode of appointment",
+          "Consultation doctor",
+          "Pregnant or not pregnant",
+          "Conversion type (scan/lab/consultation/booking)",
+          "Updated by"
+        ]
+      }
+    },
+    {
+      "id": "reg-r2",
+      "type": "note",
+      "position": {
+        "x": 560,
+        "y": 9700
+      },
+      "data": {
+        "label": "Gynaecology OPD · Bill Excel",
+        "tone": "info",
+        "items": [
+          "Serial number",
+          "Patient name",
+          "Doctor name",
+          "Reason",
+          "Registration number",
+          "Consultation",
+          "Lab",
+          "Other",
+          "Scan",
+          "Advance",
+          "Cash",
+          "Card",
+          "UPI",
+          "Online",
+          "Total",
+          "Billed by"
+        ]
+      }
+    },
+    {
+      "id": "reg-r3",
+      "type": "note",
+      "position": {
+        "x": 1070,
+        "y": 9700
+      },
+      "data": {
+        "label": "Gynaecology OPD · Discount Patients Excel",
+        "tone": "info",
+        "items": [
+          "Bill number",
+          "UHID",
+          "Total amount",
+          "Hospital",
+          "Discount",
+          "Balance amount"
+        ]
+      }
+    },
+    {
+      "id": "reg-r4",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 9700
+      },
+      "data": {
+        "label": "Gynaecology OPD · Bill Done but Service Not Provided",
+        "tone": "info",
+        "items": [
+          "Reference number",
+          "Mobile number",
+          "UHID number",
+          "Bill number",
+          "Bill on date",
+          "When they can use it",
+          "(Refreshed every financial year)"
+        ]
+      }
+    },
+    {
+      "id": "reg-r5",
+      "type": "note",
+      "position": {
+        "x": 50,
+        "y": 10140
+      },
+      "data": {
+        "label": "Gynaecology OPD · Zero Bill Excel (free follow-ups)",
+        "tone": "info",
+        "items": [
+          "Patient name",
+          "Invoice date",
+          "Advising doctor",
+          "Zero bills",
+          "Only month",
+          "2025",
+          "Invoice number",
+          "Service name",
+          "Service unit",
+          "Total discount",
+          "Net amount",
+          "User name"
+        ]
+      }
+    },
+    {
+      "id": "reg-r6",
+      "type": "note",
+      "position": {
+        "x": 560,
+        "y": 10140
+      },
+      "data": {
+        "label": "Gynaecology OPD · Medibuddy Cashless Excel",
+        "tone": "info",
+        "items": [
+          "Date",
+          "Patient name",
+          "UHID",
+          "Appointment department",
+          "Consultation doctor",
+          "Mobile number",
+          "Remark",
+          "Updated by"
+        ]
+      }
+    },
+    {
+      "id": "reg-r7",
+      "type": "note",
+      "position": {
+        "x": 1070,
+        "y": 10140
+      },
+      "data": {
+        "label": "Gynaecology OPD · Doctor Change Excel",
+        "tone": "info",
+        "items": [
+          "Name",
+          "Which doctor (from)",
+          "To which doctor",
+          "Reason",
+          "MRN number",
+          "Date",
+          "Profession for doctor"
+        ]
+      }
+    },
+    {
+      "id": "reg-r8",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 10140
+      },
+      "data": {
+        "label": "Gynaecology OPD · Refund and Discount Excel",
+        "tone": "info",
+        "items": [
+          "Columns not captured during the visit"
+        ]
+      }
+    },
+    {
+      "id": "reg-r9",
+      "type": "note",
+      "position": {
+        "x": 50,
+        "y": 10520
+      },
+      "data": {
+        "label": "Doctor Availability Excel (built for the call center)",
+        "tone": "info",
+        "items": [
+          "Columns pending, to be shared separately"
+        ]
+      }
+    },
+    {
+      "id": "reg-r10",
+      "type": "note",
+      "position": {
+        "x": 560,
+        "y": 10520
+      },
+      "data": {
+        "label": "Pediatric · Registration & Bill Excel",
+        "tone": "info",
+        "items": [
+          "Same sheets and same columns as the Gynaecology OPD Registration Excel and Bill Excel"
+        ]
+      }
+    },
+    {
+      "id": "reg-r11",
+      "type": "note",
+      "position": {
+        "x": 1070,
+        "y": 10520
+      },
+      "data": {
+        "label": "Pediatric · Vitals Nurse Register (paper copy)",
+        "tone": "info",
+        "items": [
+          "Name",
+          "Year",
+          "UHID",
+          "Time",
+          "Contact number",
+          "Doctor",
+          "Type of patient",
+          "Assigned by"
+        ]
+      }
+    },
+    {
+      "id": "reg-r12",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 10520
+      },
+      "data": {
+        "label": "Pediatric · Treatment Plan Excel",
+        "tone": "info",
+        "items": [
+          "Serial number",
+          "Date",
+          "Name",
+          "UHID",
+          "Doctor name",
+          "Advance",
+          "Week",
+          "Billed by",
+          "Package explained by",
+          "Remark"
+        ]
+      }
+    },
+    {
+      "id": "reg-r13",
+      "type": "note",
+      "position": {
+        "x": 50,
+        "y": 10860
+      },
+      "data": {
+        "label": "Pediatric · Treatment Adherence Excel",
+        "tone": "info",
+        "items": [
+          "Week-wise and date-wise columns",
+          "All dates of a week listed, next week below",
+          "1 = agreed and took the treatment",
+          "0 = advised but not taken",
+          "Used for vaccination courses"
+        ]
+      }
+    },
+    {
+      "id": "reg-r14",
+      "type": "note",
+      "position": {
+        "x": 560,
+        "y": 10860
+      },
+      "data": {
+        "label": "Pediatric · End of Day Billing Excel",
+        "tone": "info",
+        "items": [
+          "Specialization",
+          "Doctor name",
+          "Appointment",
+          "Consultation name",
+          "New or follow-up or free visit",
+          "Grand total"
+        ]
+      }
+    },
+    {
+      "id": "reg-r15",
+      "type": "note",
+      "position": {
+        "x": 1070,
+        "y": 10860
+      },
+      "data": {
+        "label": "PR Department Excel sheets",
+        "tone": "info",
+        "items": [
+          "Colour coded pregnant / non-pregnant trackers",
+          "Insurance and document tracking",
+          "Bed booking and pre-booking for delivery",
+          "Columns not captured during the visit"
+        ]
+      }
+    },
+    {
+      "id": "reg-r16",
+      "type": "note",
+      "position": {
+        "x": 1580,
+        "y": 10860
+      },
+      "data": {
+        "label": "Paper records (no Excel, no software)",
+        "tone": "info",
+        "items": [
+          "Registration form (generates the UHID)",
+          "Feedback form",
+          "Change of Doctor consent form",
+          "Pediatric vitals page",
+          "Vaccine status page in the patient file"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "sch-start->sch-ask",
+      "source": "sch-start",
+      "target": "sch-ask",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sch-ask->sch-excel",
+      "source": "sch-ask",
+      "target": "sch-excel",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sch-excel->sch-send",
+      "source": "sch-excel",
+      "target": "sch-send",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sch-send->bk-mode",
+      "source": "sch-send",
+      "target": "bk-mode",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-mode->bk-app",
+      "source": "bk-mode",
+      "target": "bk-app",
+      "label": "Ovum App",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-mode->bk-call",
+      "source": "bk-mode",
+      "target": "bk-call",
+      "label": "Call Center",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-mode->bk-walk",
+      "source": "bk-mode",
+      "target": "bk-walk",
+      "label": "Walk-in",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-app->bk-tab",
+      "source": "bk-app",
+      "target": "bk-tab",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-call->bk-tab",
+      "source": "bk-call",
+      "target": "bk-tab",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-tab->arr-remind",
+      "source": "bk-tab",
+      "target": "arr-remind",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-remind->arr-list",
+      "source": "arr-remind",
+      "target": "arr-list",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-list->arr-start",
+      "source": "arr-list",
+      "target": "arr-start",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bk-walk->arr-start",
+      "source": "bk-walk",
+      "target": "arr-start",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-start->arr-dept",
+      "source": "arr-start",
+      "target": "arr-dept",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-dept->arr-ivf",
+      "source": "arr-dept",
+      "target": "arr-ivf",
+      "label": "Non-pregnant",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-dept->arr-gyn",
+      "source": "arr-dept",
+      "target": "arr-gyn",
+      "label": "Pregnant",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-dept->arr-ped",
+      "source": "arr-dept",
+      "target": "arr-ped",
+      "label": "Child",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-ivf->arr-conceive",
+      "source": "arr-ivf",
+      "target": "arr-conceive",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-conceive->arr-gyn",
+      "source": "arr-conceive",
+      "target": "arr-gyn",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "arr-ped->pd-book",
+      "source": "arr-ped",
+      "target": "pd-book",
+      "label": "to Pediatric lane",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#1E5F4B",
+        "strokeWidth": 1.6,
+        "strokeDasharray": "6 4"
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#1E5F4B"
+      }
+    },
+    {
+      "id": "arr-gyn->reg-new",
+      "source": "arr-gyn",
+      "target": "reg-new",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "reg-new->reg-form",
+      "source": "reg-new",
+      "target": "reg-form",
+      "label": "New",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "reg-new->reg-existing",
+      "source": "reg-new",
+      "target": "reg-existing",
+      "label": "Existing",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "reg-form->reg-excel",
+      "source": "reg-form",
+      "target": "reg-excel",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "reg-excel->reg-uhid",
+      "source": "reg-excel",
+      "target": "reg-uhid",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "reg-existing->bil-counter",
+      "source": "reg-existing",
+      "target": "bil-counter",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "reg-uhid->bil-counter",
+      "source": "reg-uhid",
+      "target": "bil-counter",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-counter->bil-mode",
+      "source": "bil-counter",
+      "target": "bil-mode",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-mode->bil-cash",
+      "source": "bil-mode",
+      "target": "bil-cash",
+      "label": "Cash",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-mode->bil-card",
+      "source": "bil-mode",
+      "target": "bil-card",
+      "label": "Card / UPI",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-mode->bil-online",
+      "source": "bil-mode",
+      "target": "bil-online",
+      "label": "Paid online",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-card->bil-txn",
+      "source": "bil-card",
+      "target": "bil-txn",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-online->bil-txn",
+      "source": "bil-online",
+      "target": "bil-txn",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-cash->bil-disc",
+      "source": "bil-cash",
+      "target": "bil-disc",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-txn->bil-disc",
+      "source": "bil-txn",
+      "target": "bil-disc",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-disc->bil-logout",
+      "source": "bil-disc",
+      "target": "bil-logout",
+      "label": "Yes",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-disc->bil-normal",
+      "source": "bil-disc",
+      "target": "bil-normal",
+      "label": "No",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-logout->bil-receipt",
+      "source": "bil-logout",
+      "target": "bil-receipt",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-normal->bil-receipt",
+      "source": "bil-normal",
+      "target": "bil-receipt",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-receipt->bil-wa",
+      "source": "bil-receipt",
+      "target": "bil-wa",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "bil-wa->cons-bill",
+      "source": "bil-wa",
+      "target": "cons-bill",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-bill->cons-rush",
+      "source": "cons-bill",
+      "target": "cons-rush",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-rush->cons-doc-vitals",
+      "source": "cons-rush",
+      "target": "cons-doc-vitals",
+      "label": "Yes",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-rush->cons-nurse",
+      "source": "cons-rush",
+      "target": "cons-nurse",
+      "label": "No",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-nurse->cons-room",
+      "source": "cons-nurse",
+      "target": "cons-room",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-doc-vitals->cons-room",
+      "source": "cons-doc-vitals",
+      "target": "cons-room",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-room->cons-rx",
+      "source": "cons-room",
+      "target": "cons-rx",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-rx->cons-rx-eka",
+      "source": "cons-rx",
+      "target": "cons-rx-eka",
+      "label": "Yes",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-rx->cons-rx-out",
+      "source": "cons-rx",
+      "target": "cons-rx-out",
+      "label": "No",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-rx-eka->cons-next",
+      "source": "cons-rx-eka",
+      "target": "cons-next",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-rx-out->cons-next",
+      "source": "cons-rx-out",
+      "target": "cons-next",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-next->cons-home",
+      "source": "cons-next",
+      "target": "cons-home",
+      "label": "Nothing further",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-next->sl-type",
+      "source": "cons-next",
+      "target": "sl-type",
+      "label": "Scan / Lab / Radiology",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "cons-next->pr-list",
+      "source": "cons-next",
+      "target": "pr-list",
+      "label": "Pregnant · to PR counselling",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#1E5F4B",
+        "strokeWidth": 1.6,
+        "strokeDasharray": "6 4"
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#1E5F4B"
+      }
+    },
+    {
+      "id": "sl-type->sl-scan-bill",
+      "source": "sl-type",
+      "target": "sl-scan-bill",
+      "label": "Scan",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-type->sl-radio",
+      "source": "sl-type",
+      "target": "sl-radio",
+      "label": "Radiology",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-type->sl-lab-rx",
+      "source": "sl-type",
+      "target": "sl-lab-rx",
+      "label": "Lab test",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-scan-bill->sl-scan",
+      "source": "sl-scan-bill",
+      "target": "sl-scan",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-scan->sl-scan-rep",
+      "source": "sl-scan",
+      "target": "sl-scan-rep",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-lab-rx->sl-lab-bill",
+      "source": "sl-lab-rx",
+      "target": "sl-lab-bill",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-lab-bill->sl-lab-sample",
+      "source": "sl-lab-bill",
+      "target": "sl-lab-sample",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-lab-sample->sl-lab-agent",
+      "source": "sl-lab-sample",
+      "target": "sl-lab-agent",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-lab-agent->sl-lab-rep",
+      "source": "sl-lab-agent",
+      "target": "sl-lab-rep",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-scan-rep->sl-converge",
+      "source": "sl-scan-rep",
+      "target": "sl-converge",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-radio->sl-converge",
+      "source": "sl-radio",
+      "target": "sl-converge",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-lab-rep->sl-converge",
+      "source": "sl-lab-rep",
+      "target": "sl-converge",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "sl-converge->oth-type",
+      "source": "sl-converge",
+      "target": "oth-type",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-type->oth-change",
+      "source": "oth-type",
+      "target": "oth-change",
+      "label": "Doctor change",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-type->oth-refund",
+      "source": "oth-type",
+      "target": "oth-refund",
+      "label": "Doctor delayed",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-type->oth-resched",
+      "source": "oth-type",
+      "target": "oth-resched",
+      "label": "Reschedule",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-change->oth-form",
+      "source": "oth-change",
+      "target": "oth-form",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-form->oth-change-excel",
+      "source": "oth-form",
+      "target": "oth-change-excel",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-refund->oth-refund2",
+      "source": "oth-refund",
+      "target": "oth-refund2",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-resched->oth-fcfs",
+      "source": "oth-resched",
+      "target": "oth-fcfs",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-change-excel->eod-report",
+      "source": "oth-change-excel",
+      "target": "eod-report",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-refund2->eod-report",
+      "source": "oth-refund2",
+      "target": "eod-report",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "oth-fcfs->eod-report",
+      "source": "oth-fcfs",
+      "target": "eod-report",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "eod-report->eod-end",
+      "source": "eod-report",
+      "target": "eod-end",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-book->pd-reg",
+      "source": "pd-book",
+      "target": "pd-reg",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-reg->pd-excel",
+      "source": "pd-reg",
+      "target": "pd-excel",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-excel->pd-file",
+      "source": "pd-excel",
+      "target": "pd-file",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-file->pd-bill",
+      "source": "pd-file",
+      "target": "pd-bill",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-bill->pd-nurse",
+      "source": "pd-bill",
+      "target": "pd-nurse",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-nurse->pd-paper",
+      "source": "pd-nurse",
+      "target": "pd-paper",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-paper->pd-doc-enter",
+      "source": "pd-paper",
+      "target": "pd-doc-enter",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-doc-enter->pd-rx",
+      "source": "pd-doc-enter",
+      "target": "pd-rx",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-rx->pd-lab",
+      "source": "pd-rx",
+      "target": "pd-lab",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-lab->pd-vacc",
+      "source": "pd-lab",
+      "target": "pd-vacc",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-vacc->pd-treat",
+      "source": "pd-vacc",
+      "target": "pd-treat",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-treat->pd-emerg",
+      "source": "pd-treat",
+      "target": "pd-emerg",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-emerg->pd-wait",
+      "source": "pd-emerg",
+      "target": "pd-wait",
+      "label": "Yes",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-emerg->pd-eod",
+      "source": "pd-emerg",
+      "target": "pd-eod",
+      "label": "No",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-wait->pd-eod",
+      "source": "pd-wait",
+      "target": "pd-eod",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pd-eod->pd-end",
+      "source": "pd-eod",
+      "target": "pd-end",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-list->pr-type",
+      "source": "pr-list",
+      "target": "pr-type",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-type->pr-preg",
+      "source": "pr-type",
+      "target": "pr-preg",
+      "label": "Pregnant",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-type->pr-nonpreg",
+      "source": "pr-type",
+      "target": "pr-nonpreg",
+      "label": "Non-pregnant",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-preg->pr-colour",
+      "source": "pr-preg",
+      "target": "pr-colour",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-colour->pr-security",
+      "source": "pr-colour",
+      "target": "pr-security",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-nonpreg->pr-security",
+      "source": "pr-nonpreg",
+      "target": "pr-security",
+      "label": "If converts",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-security->pr-ip",
+      "source": "pr-security",
+      "target": "pr-ip",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-ip->pr-bed",
+      "source": "pr-ip",
+      "target": "pr-bed",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-bed->pr-admit",
+      "source": "pr-bed",
+      "target": "pr-admit",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-admit->pr-ins",
+      "source": "pr-admit",
+      "target": "pr-ins",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-ins->pr-status",
+      "source": "pr-ins",
+      "target": "pr-status",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-status->pr-feedback",
+      "source": "pr-status",
+      "target": "pr-feedback",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-feedback->pr-end",
+      "source": "pr-feedback",
+      "target": "pr-end",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#5B5550",
+        "strokeWidth": 1.6
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#5B5550"
+      }
+    },
+    {
+      "id": "pr-end->pd-book",
+      "source": "pr-end",
+      "target": "pd-book",
+      "label": "newborn · to Pediatric",
+      "type": "smoothstep",
+      "animated": false,
+      "style": {
+        "stroke": "#1E5F4B",
+        "strokeWidth": 1.6,
+        "strokeDasharray": "6 4"
+      },
+      "labelStyle": {
+        "fill": "#3a3430",
+        "fontSize": 11,
+        "fontWeight": 500
+      },
+      "labelBgStyle": {
+        "fill": "#F5F2EA"
+      },
+      "labelBgPadding": [
+        6,
+        3
+      ],
+      "labelBgBorderRadius": 4,
+      "markerEnd": {
+        "type": "arrowclosed",
+        "color": "#1E5F4B"
+      }
+    }
+  ]
+};</script>
+<script>(function () {
+  "use strict";
+
+  var W_NOTE = 300, W_STEP = 260, GAP = 30, PAD = 34, MARGIN = 70;
+
+  var ROLE_COLOR = {
+    reception: "#C96A4A", doctor: "#2E4A7B", nurse: "#A47C1B",
+    patient: "#2F7D7B", admin: "#1E5F4B", system: "#3B3B3B",
+    pharmacist: "#6E4B8E"
+  };
+  var ROLE_NAME = {
+    reception: "Reception", doctor: "Doctor", nurse: "Nurse",
+    patient: "Patient", admin: "PR / IP Team", system: "System",
+    pharmacist: "Partner Lab"
+  };
+  var PREFIX = [
+    ["reg-r", "ph-r"], ["sch-", "ph-1"], ["bk-", "ph-2"], ["arr-", "ph-3"],
+    ["reg-", "ph-4"], ["bil-", "ph-5"], ["cons-", "ph-6"], ["sl-", "ph-7"],
+    ["oth-", "ph-8"], ["eod-", "ph-9"], ["pd-", "ph-s1"], ["pr-", "ph-s2"]
+  ];
+
+  var state = JSON.parse(JSON.stringify(FLOW_DATA));
+  var phases = [], items = [], rects = {}, phaseBox = {};
+  var ORIGIN = null, CW = 0, CH = 0;
+  var k = 1, tx = 0, ty = 0;
+  var editMode = false, linkFrom = null, sel = null, undoStack = [], booted = false;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var elNodes = $("nodes"), elBands = $("bands"), elLabels = $("labels");
+  var svg = $("edges"), canvas = $("canvas"), vp = $("vp"), insp = $("inspector");
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function phaseOf(n) {
+    if (n.data && n.data.phase) return n.data.phase;
+    for (var i = 0; i < PREFIX.length; i++)
+      if (n.id.indexOf(PREFIX[i][0]) === 0) return PREFIX[i][1];
+    return null;
+  }
+  function split() {
+    phases = []; items = [];
+    state.nodes.forEach(function (n) { (n.type === "phase" ? phases : items).push(n); });
+  }
+  function nodeById(id) {
+    for (var i = 0; i < state.nodes.length; i++) if (state.nodes[i].id === id) return state.nodes[i];
+    return null;
+  }
+  function pushUndo() {
+    undoStack.push(JSON.stringify({ nodes: state.nodes, edges: state.edges }));
+    if (undoStack.length > 40) undoStack.shift();
+  }
+
+  // ---------------- nodes ----------------
+  function renderNodes() {
+    elNodes.innerHTML = ""; rects = {};
+    items.forEach(function (n) {
+      var d = n.data || (n.data = {});
+      var el = document.createElement("div");
+      el.className = "n n-" + n.type + (n.type === "note" && d.tone ? " " + d.tone : "") +
+        (editMode ? " editable" : "") + (sel === n.id ? " sel" : "") +
+        (linkFrom === n.id ? " linksrc" : "");
+      el.dataset.id = n.id;
+      el.style.width = (n.type === "note" ? W_NOTE : W_STEP) + "px";
+      el.style.left = n.position.x + "px";
+      el.style.top = n.position.y + "px";
+
+      var h = "";
+      if (n.type === "note") {
+        h += '<span class="tag">' +
+          (d.tone === "warn" ? "Gap" : d.tone === "success" ? "Supported" : "Note") + "</span>";
+      } else if (d.role) {
+        h += '<span class="role" style="color:' + (ROLE_COLOR[d.role] || "#3B3B3B") + '">' +
+          esc(ROLE_NAME[d.role] || d.role) + "</span>";
+      }
+      h += '<span class="lbl">' + esc(d.label || "") + "</span>";
+      if (d.items && d.items.length) {
+        h += "<ul>";
+        d.items.forEach(function (it) { h += "<li>" + esc(it) + "</li>"; });
+        h += "</ul>";
+      }
+      if (d.integration) h += '<span class="ext">External system</span>';
+      el.innerHTML = h;
+      elNodes.appendChild(el);
+      rects[n.id] = { x: n.position.x, y: n.position.y, w: parseFloat(el.style.width), h: 0, el: el };
+    });
+    items.forEach(function (n) { rects[n.id].h = rects[n.id].el.offsetHeight; });
+  }
+
+  function declutter() {
+    var cols = {};
+    items.forEach(function (n) {
+      var r = rects[n.id];
+      (cols[r.x] = cols[r.x] || []).push({ r: r, n: n });
+    });
+    Object.keys(cols).forEach(function (c) {
+      var l = cols[c].sort(function (a, b) { return a.r.y - b.r.y; });
+      for (var i = 1; i < l.length; i++) {
+        var min = l[i - 1].r.y + l[i - 1].r.h + GAP;
+        if (l[i].r.y < min) { l[i].r.y = min; l[i].n.position.y = min; }
+      }
+    });
+    items.forEach(function (n) { rects[n.id].el.style.top = rects[n.id].y + "px"; });
+  }
+
+  // ---------------- bands ----------------
+  function renderBands() {
+    elBands.innerHTML = ""; phaseBox = {};
+    items.forEach(function (n) {
+      var p = phaseOf(n); if (!p) return;
+      var r = rects[n.id];
+      var b = phaseBox[p] || (phaseBox[p] = { x1: 1e9, y1: 1e9, x2: -1e9, y2: -1e9 });
+      b.x1 = Math.min(b.x1, r.x); b.y1 = Math.min(b.y1, r.y);
+      b.x2 = Math.max(b.x2, r.x + r.w); b.y2 = Math.max(b.y2, r.y + r.h);
+    });
+    phases.forEach(function (p) {
+      var b = phaseBox[p.id]; if (!b) return;
+      var d = p.data;
+      var box = { x: b.x1 - PAD, y: b.y1 - PAD, w: b.x2 - b.x1 + PAD * 2, h: b.y2 - b.y1 + PAD * 2 };
+      phaseBox[p.id].box = box;
+      var el = document.createElement("div");
+      el.className = "band";
+      el.style.cssText = "left:" + box.x + "px;top:" + box.y + "px;width:" + box.w +
+        "px;height:" + box.h + "px;background:" + d.accent + "4D;border-left-color:" + d.stroke;
+      el.innerHTML = '<div class="band-hd"><span class="t">' + esc(d.label) +
+        '</span><span class="o">' + esc(d.owner || "") + "</span></div>";
+      elBands.appendChild(el);
+    });
+  }
+
+  function sizeCanvas() {
+    var x1 = 1e9, y1 = 1e9, x2 = -1e9, y2 = -1e9;
+    Object.keys(phaseBox).forEach(function (id) {
+      var b = phaseBox[id].box; if (!b) return;
+      x1 = Math.min(x1, b.x); y1 = Math.min(y1, b.y - 20);
+      x2 = Math.max(x2, b.x + b.w); y2 = Math.max(y2, b.y + b.h);
+    });
+    items.forEach(function (n) {
+      var r = rects[n.id];
+      x1 = Math.min(x1, r.x); y1 = Math.min(y1, r.y);
+      x2 = Math.max(x2, r.x + r.w); y2 = Math.max(y2, r.y + r.h);
+    });
+    x1 -= MARGIN; y1 -= MARGIN; x2 += MARGIN; y2 += MARGIN;
+    if (!ORIGIN) ORIGIN = { x: x1, y: y1 };
+    CW = Math.max(x2, ORIGIN.x + 100) - ORIGIN.x;
+    CH = Math.max(y2, ORIGIN.y + 100) - ORIGIN.y;
+    canvas.style.width = CW + "px"; canvas.style.height = CH + "px";
+    [elBands, elNodes, elLabels].forEach(function (l) {
+      l.style.transform = "translate(" + (-ORIGIN.x) + "px," + (-ORIGIN.y) + "px)";
+    });
+    svg.setAttribute("width", CW); svg.setAttribute("height", CH);
+    svg.setAttribute("viewBox", ORIGIN.x + " " + ORIGIN.y + " " + CW + " " + CH);
+  }
+
+  // ---------------- edges ----------------
+  function dist(a, b) { return Math.hypot(b[0] - a[0], b[1] - a[1]); }
+  function unit(f, t) {
+    var dx = t[0] - f[0], dy = t[1] - f[1], m = Math.hypot(dx, dy) || 1;
+    return [dx / m, dy / m];
+  }
+  function roundedPath(pts, r) {
+    var c = [pts[0]];
+    for (var i = 1; i < pts.length; i++) if (dist(pts[i], c[c.length - 1]) > 0.5) c.push(pts[i]);
+    if (c.length < 2) return "";
+    var d = "M " + c[0][0] + " " + c[0][1];
+    for (var j = 1; j < c.length - 1; j++) {
+      var p0 = c[j - 1], p1 = c[j], p2 = c[j + 1];
+      var r1 = Math.min(r, dist(p0, p1) / 2), r2 = Math.min(r, dist(p1, p2) / 2);
+      var v1 = unit(p1, p0), v2 = unit(p1, p2);
+      d += " L " + (p1[0] + v1[0] * r1) + " " + (p1[1] + v1[1] * r1) +
+        " Q " + p1[0] + " " + p1[1] + " " + (p1[0] + v2[0] * r2) + " " + (p1[1] + v2[1] * r2);
+    }
+    return d + " L " + c[c.length - 1][0] + " " + c[c.length - 1][1];
+  }
+
+  function drawEdges() {
+    svg.innerHTML = ""; elLabels.innerHTML = "";
+    var NS = "http://www.w3.org/2000/svg";
+    var defs = document.createElementNS(NS, "defs"), seen = {};
+    state.edges.forEach(function (e) {
+      var c = (e.style && e.style.stroke) || "#5B5550";
+      if (seen[c]) return; seen[c] = 1;
+      var m = document.createElementNS(NS, "marker");
+      m.setAttribute("id", "arw-" + c.replace("#", ""));
+      m.setAttribute("markerWidth", "9"); m.setAttribute("markerHeight", "7");
+      m.setAttribute("refX", "8"); m.setAttribute("refY", "3.5");
+      m.setAttribute("orient", "auto"); m.setAttribute("markerUnits", "userSpaceOnUse");
+      var p = document.createElementNS(NS, "path");
+      p.setAttribute("d", "M0,0 L9,3.5 L0,7 z"); p.setAttribute("fill", c);
+      m.appendChild(p); defs.appendChild(m);
+    });
+    svg.appendChild(defs);
+
+    state.edges.forEach(function (e) {
+      var s = rects[e.source], t = rects[e.target];
+      if (!s || !t) return;
+      var sx = s.x + s.w / 2, sy = s.y + s.h, txx = t.x + t.w / 2, tyy = t.y - 3, pts;
+      if (tyy > sy + 26) {
+        var mid = sy + Math.max(24, (tyy - sy) / 2);
+        pts = [[sx, sy], [sx, mid], [txx, mid], [txx, tyy]];
+      } else {
+        var ch = Math.max(s.x + s.w, t.x + t.w) + 96;
+        pts = [[sx, sy], [sx, sy + 42], [ch, sy + 42], [ch, tyy - 52], [txx, tyy - 52], [txx, tyy]];
+      }
+      var d = roundedPath(pts, 11);
+      var col = (e.style && e.style.stroke) || "#5B5550";
+
+      var hit = document.createElementNS(NS, "path");
+      hit.setAttribute("d", d); hit.setAttribute("class", "ehit");
+      hit.dataset.id = e.id;
+      svg.appendChild(hit);
+
+      var p = document.createElementNS(NS, "path");
+      p.setAttribute("d", d); p.setAttribute("fill", "none");
+      p.setAttribute("stroke", col);
+      p.setAttribute("stroke-width", (e.style && e.style.strokeWidth) || 1.6);
+      if (e.style && e.style.strokeDasharray) p.setAttribute("stroke-dasharray", e.style.strokeDasharray);
+      p.setAttribute("marker-end", "url(#arw-" + col.replace("#", "") + ")");
+      p.setAttribute("class", "epath" + (sel === e.id ? " sel" : ""));
+      svg.appendChild(p);
+
+      if (e.label) {
+        var m = p.getPointAtLength(p.getTotalLength() * 0.5);
+        var lab = document.createElement("div");
+        lab.className = "elabel"; lab.textContent = e.label;
+        lab.style.left = m.x + "px"; lab.style.top = m.y + "px";
+        elLabels.appendChild(lab);
+      }
+    });
+    svg.style.pointerEvents = editMode ? "auto" : "none";
+  }
+
+  // ---------------- rail ----------------
+  function renderRail() {
+    var list = $("phaseList"); list.innerHTML = "";
+    phases.forEach(function (p) {
+      var b = phaseBox[p.id] && phaseBox[p.id].box; if (!b) return;
+      var parts = p.data.label.split("·");
+      var btn = document.createElement("button");
+      btn.className = "phase-btn"; btn.type = "button";
+      btn.innerHTML = '<span class="num">' + esc(parts[0].trim()) + '</span>' +
+        '<span class="swatch" style="background:' + p.data.stroke + '"></span>' +
+        '<span class="nm">' + esc(parts.slice(1).join("·").trim()) + "</span>";
+      btn.addEventListener("click", function () { jumpTo(b); });
+      list.appendChild(btn);
+    });
+    $("counts").textContent = items.length + " nodes · " + state.edges.length +
+      " transitions · " + phases.length + " phases";
+  }
+
+  function render(first) {
+    split(); renderNodes();
+    if (first) declutter();
+    renderBands(); sizeCanvas(); drawEdges(); renderRail(); drawMinimap(); apply();
+  }
+
+  // ---------------- view ----------------
+  var sbv = $("sbv"), sbvt = $("sbvt"), sbh = $("sbh"), sbht = $("sbht"), sbc = $("sbc");
+
+  function clampPan() {
+    var r = vp.getBoundingClientRect();
+    var cw = CW * k, ch = CH * k;
+    if (cw <= r.width) tx = (r.width - cw) / 2;
+    else tx = Math.min(0, Math.max(r.width - cw, tx));
+    if (ch <= r.height) ty = (r.height - ch) / 2;
+    else ty = Math.min(0, Math.max(r.height - ch, ty));
+  }
+
+  function updateScrollbars() {
+    var r = vp.getBoundingClientRect();
+    var cw = CW * k, ch = CH * k;
+    var vShow = ch > r.height + 1, hShow = cw > r.width + 1;
+    sbv.hidden = !vShow; sbh.hidden = !hShow; sbc.hidden = !(vShow && hShow);
+    if (vShow) {
+      var track = sbv.clientHeight;
+      var th = Math.max(32, track * (r.height / ch));
+      var span = Math.max(1, track - th);
+      sbvt.style.height = th + "px";
+      sbvt.style.top = Math.max(0, Math.min(span, span * (-ty) / (ch - r.height))) + "px";
+    }
+    if (hShow) {
+      var trackH = sbh.clientWidth;
+      var tw = Math.max(32, trackH * (r.width / cw));
+      var spanH = Math.max(1, trackH - tw);
+      sbht.style.width = tw + "px";
+      sbht.style.left = Math.max(0, Math.min(spanH, spanH * (-tx) / (cw - r.width))) + "px";
+    }
+  }
+
+  function apply() {
+    clampPan();
+    canvas.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + k + ")";
+    updateScrollbars();
+    drawMinimapView();
+  }
+  function clampK(v) { return Math.min(2.2, Math.max(0.06, v)); }
+
+  function scrollBy(dx, dy) { tx -= dx; ty -= dy; apply(); }
+  function fitAll() {
+    var r = vp.getBoundingClientRect();
+    k = clampK(Math.min(r.width / CW, r.height / CH) * 0.96);
+    tx = (r.width - CW * k) / 2; ty = (r.height - CH * k) / 2; apply();
+  }
+  function fitWidth() {
+    var r = vp.getBoundingClientRect();
+    k = clampK(Math.min((r.width - 40) / CW, 0.72));
+    tx = (r.width - CW * k) / 2; ty = 24; apply();
+  }
+  function jumpTo(b) {
+    k = clampK(Math.max(k, 0.42));
+    tx = 40 - (b.x - ORIGIN.x) * k; ty = 46 - (b.y - ORIGIN.y) * k; apply();
+  }
+  function zoomBy(f) {
+    var r = vp.getBoundingClientRect(), mx = r.width / 2, my = r.height / 2;
+    var nk = clampK(k * f);
+    tx = mx - (mx - tx) * (nk / k); ty = my - (my - ty) * (nk / k); k = nk; apply();
+  }
+  function toContent(ev) {
+    var r = vp.getBoundingClientRect();
+    return { x: (ev.clientX - r.left - tx) / k + ORIGIN.x, y: (ev.clientY - r.top - ty) / k + ORIGIN.y };
+  }
+
+  vp.addEventListener("wheel", function (ev) {
+    ev.preventDefault();
+    var f = ev.deltaMode === 1 ? 16 : ev.deltaMode === 2 ? 400 : 1;
+    if (ev.ctrlKey || ev.metaKey) {
+      var r = vp.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
+      var nk = clampK(k * Math.pow(1.0022, -ev.deltaY * f));
+      tx = mx - (mx - tx) * (nk / k); ty = my - (my - ty) * (nk / k); k = nk; apply();
+      return;
+    }
+    var dx = ev.deltaX * f, dy = ev.deltaY * f;
+    if (ev.shiftKey && !ev.deltaX) { dx = dy; dy = 0; }
+    scrollBy(dx, dy);
+  }, { passive: false });
+
+  // scrollbar thumbs
+  function bindThumb(bar, thumb, axis) {
+    thumb.addEventListener("pointerdown", function (ev) {
+      ev.preventDefault(); ev.stopPropagation();
+      thumb.classList.add("drag");
+      var s0 = axis === "y" ? ev.clientY : ev.clientX;
+      var t0 = axis === "y" ? ty : tx;
+      function move(e2) {
+        var r = vp.getBoundingClientRect();
+        var vpLen = axis === "y" ? r.height : r.width;
+        var cLen = axis === "y" ? CH * k : CW * k;
+        var track = axis === "y" ? bar.clientHeight : bar.clientWidth;
+        var tLen = axis === "y" ? thumb.offsetHeight : thumb.offsetWidth;
+        var span = track - tLen;
+        if (span <= 0 || cLen <= vpLen) return;
+        var d = ((axis === "y" ? e2.clientY : e2.clientX) - s0) / span * (cLen - vpLen);
+        if (axis === "y") ty = t0 - d; else tx = t0 - d;
+        apply();
+      }
+      function up() {
+        thumb.classList.remove("drag");
+        document.removeEventListener("pointermove", move);
+        document.removeEventListener("pointerup", up);
+      }
+      document.addEventListener("pointermove", move);
+      document.addEventListener("pointerup", up);
+    });
+  }
+  bindThumb(sbv, sbvt, "y");
+  bindThumb(sbh, sbht, "x");
+
+  // click the track to page up/down
+  sbv.addEventListener("pointerdown", function (ev) {
+    if (ev.target === sbvt) return;
+    var r = vp.getBoundingClientRect();
+    var b = sbv.getBoundingClientRect();
+    scrollBy(0, (ev.clientY - b.top < sbvt.offsetTop ? -1 : 1) * r.height * 0.85);
+  });
+  sbh.addEventListener("pointerdown", function (ev) {
+    if (ev.target === sbht) return;
+    var r = vp.getBoundingClientRect();
+    var b = sbh.getBoundingClientRect();
+    scrollBy((ev.clientX - b.left < sbht.offsetLeft ? -1 : 1) * r.width * 0.85, 0);
+  });
+
+  var drag = null;
+  vp.addEventListener("pointerdown", function (ev) {
+    if (ev.target.closest && ev.target.closest(".sbar, .sbar-corner")) return;
+    var nEl = ev.target.closest ? ev.target.closest(".n") : null;
+
+    if (editMode && ev.target.classList && ev.target.classList.contains("ehit")) {
+      sel = ev.target.dataset.id; linkFrom = null; render(); openInspector(); return;
+    }
+    if (editMode && nEl) {
+      var id = nEl.dataset.id;
+      if (linkFrom) {
+        if (linkFrom !== id) createEdge(linkFrom, id);
+        linkFrom = null; vp.classList.remove("linking"); render(); return;
+      }
+      sel = id; render(); openInspector();
+      drag = { kind: "node", id: id, x: ev.clientX, y: ev.clientY,
+               nx: nodeById(id).position.x, ny: nodeById(id).position.y, moved: false };
+      vp.setPointerCapture(ev.pointerId);
+      return;
+    }
+    if (editMode && !nEl) { sel = null; linkFrom = null; vp.classList.remove("linking"); render(); closeInspector(); }
+    drag = { kind: "pan", x: ev.clientX, y: ev.clientY, tx: tx, ty: ty };
+    vp.setPointerCapture(ev.pointerId); vp.classList.add("dragging");
+  });
+
+  vp.addEventListener("pointermove", function (ev) {
+    if (!drag) return;
+    if (drag.kind === "pan") {
+      tx = drag.tx + (ev.clientX - drag.x); ty = drag.ty + (ev.clientY - drag.y); apply();
+    } else {
+      var n = nodeById(drag.id); if (!n) return;
+      if (!drag.moved) { pushUndo(); drag.moved = true; }
+      n.position.x = Math.round(drag.nx + (ev.clientX - drag.x) / k);
+      n.position.y = Math.round(drag.ny + (ev.clientY - drag.y) / k);
+      var r = rects[drag.id];
+      r.x = n.position.x; r.y = n.position.y;
+      r.el.style.left = r.x + "px"; r.el.style.top = r.y + "px";
+      drawEdges();
+    }
+  });
+
+  ["pointerup", "pointercancel"].forEach(function (t) {
+    vp.addEventListener(t, function () {
+      var wasNode = drag && drag.kind === "node" && drag.moved;
+      drag = null; vp.classList.remove("dragging");
+      if (wasNode) { renderBands(); sizeCanvas(); drawEdges(); drawMinimap(); }
+    });
+  });
+
+  // ---------------- editing ----------------
+  function createEdge(s, t) {
+    pushUndo();
+    var id = s + "->" + t;
+    if (state.edges.some(function (e) { return e.id === id; })) return;
+    state.edges.push({
+      id: id, source: s, target: t, type: "smoothstep", animated: false,
+      style: { stroke: "#5B5550", strokeWidth: 1.6 },
+      labelStyle: { fill: "#3a3430", fontSize: 11, fontWeight: 500 },
+      labelBgStyle: { fill: "#F5F2EA" }, labelBgPadding: [6, 3], labelBgBorderRadius: 4,
+      markerEnd: { type: "arrowclosed", color: "#5B5550" }
+    });
+    sel = id;
+  }
+
+  function addNode() {
+    pushUndo();
+    var r = vp.getBoundingClientRect();
+    var cx = Math.round((r.width / 2 - tx) / k + ORIGIN.x) - W_STEP / 2;
+    var cy = Math.round((r.height / 2 - ty) / k + ORIGIN.y);
+    var ph = "ph-1";
+    Object.keys(phaseBox).forEach(function (id) {
+      var b = phaseBox[id].box;
+      if (b && cy >= b.y && cy <= b.y + b.h) ph = id;
+    });
+    var i = 1; while (nodeById("new-" + i)) i++;
+    state.nodes.push({
+      id: "new-" + i, type: "step", position: { x: cx, y: cy },
+      data: { label: "New step", role: "reception", phase: ph }
+    });
+    sel = "new-" + i;
+    render(); openInspector();
+  }
+
+  function deleteSelected() {
+    if (!sel) return;
+    pushUndo();
+    if (nodeById(sel)) {
+      state.nodes = state.nodes.filter(function (n) { return n.id !== sel; });
+      state.edges = state.edges.filter(function (e) { return e.source !== sel && e.target !== sel; });
+    } else {
+      state.edges = state.edges.filter(function (e) { return e.id !== sel; });
+    }
+    sel = null; render(); closeInspector();
+  }
+
+  function undo() {
+    if (!undoStack.length) return;
+    var s = JSON.parse(undoStack.pop());
+    state.nodes = s.nodes; state.edges = s.edges;
+    sel = null; render(); closeInspector();
+  }
+
+  // ---------------- inspector ----------------
+  function closeInspector() { insp.hidden = true; }
+
+  function openInspector() {
+    if (!sel) return closeInspector();
+    insp.hidden = false;
+    var n = nodeById(sel);
+    if (n) return inspectNode(n);
+    var e = state.edges.filter(function (x) { return x.id === sel; })[0];
+    if (e) return inspectEdge(e);
+    closeInspector();
+  }
+
+  function opts(list, cur) {
+    return list.map(function (o) {
+      var v = typeof o === "string" ? o : o[0], t = typeof o === "string" ? o : o[1];
+      return '<option value="' + v + '"' + (v === cur ? " selected" : "") + ">" + esc(t) + "</option>";
+    }).join("");
+  }
+
+  function inspectNode(n) {
+    var d = n.data || (n.data = {});
+    var isNote = n.type === "note";
+    var h = '<h2>Node</h2><div class="insp-id">' + esc(n.id) + "</div>";
+    h += '<div class="fld"><label>Type</label><select id="f-type">' +
+      opts([["step", "Step"], ["decision", "Decision"], ["note", "Note / Gap"],
+            ["start", "Start"], ["end", "End"]], n.type) + "</select></div>";
+    if (isNote) {
+      h += '<div class="fld"><label>Tone</label><select id="f-tone">' +
+        opts([["warn", "Gap (red)"], ["info", "Note (blue)"], ["success", "Supported (green)"]],
+             d.tone || "info") + "</select></div>";
+    } else {
+      h += '<div class="fld"><label>Who does it</label><select id="f-role">' +
+        opts(Object.keys(ROLE_NAME).map(function (r) { return [r, ROLE_NAME[r]]; }), d.role || "reception") +
+        "</select></div>";
+    }
+    h += '<div class="fld"><label>Phase</label><select id="f-phase">' +
+      opts(phases.map(function (p) { return [p.id, p.data.label]; }), phaseOf(n)) + "</select></div>";
+    h += '<div class="fld"><label>Label</label><textarea id="f-label" rows="3">' +
+      esc(d.label || "") + "</textarea></div>";
+    h += '<div class="fld"><label>Detail lines (one per line)</label><textarea id="f-items" rows="5">' +
+      esc((d.items || []).join("\n")) + "</textarea></div>";
+    if (!isNote) {
+      h += '<div class="fld row"><input type="checkbox" id="f-int"' +
+        (d.integration ? " checked" : "") + '><label for="f-int">Runs on an external system</label></div>';
+    }
+    h += '<div class="insp-actions"><button class="btn wide" id="f-link" type="button">Draw link from here</button></div>';
+    h += '<div class="insp-actions"><button class="btn danger wide" id="f-del" type="button">Delete node</button></div>';
+    insp.innerHTML = h;
+
+    function commit(fn) { pushUndo(); fn(); render(); openInspector(); }
+    $("f-type").addEventListener("change", function () {
+      commit(function () {
+        n.type = $("f-type").value;
+        if (n.type === "note") { d.tone = d.tone || "info"; delete d.role; delete d.integration; }
+        else { d.role = d.role || "reception"; delete d.tone; }
+      });
+    });
+    if ($("f-tone")) $("f-tone").addEventListener("change", function () { commit(function () { d.tone = $("f-tone").value; }); });
+    if ($("f-role")) $("f-role").addEventListener("change", function () { commit(function () { d.role = $("f-role").value; }); });
+    $("f-phase").addEventListener("change", function () { commit(function () { d.phase = $("f-phase").value; }); });
+    if ($("f-int")) $("f-int").addEventListener("change", function () { commit(function () { d.integration = $("f-int").checked; }); });
+
+    ["f-label", "f-items"].forEach(function (id) {
+      var el = $(id), before = null;
+      el.addEventListener("focus", function () { before = el.value; });
+      el.addEventListener("blur", function () {
+        if (el.value === before) return;
+        pushUndo();
+        if (id === "f-label") d.label = el.value;
+        else {
+          var lines = el.value.split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
+          if (lines.length) d.items = lines; else delete d.items;
+        }
+        render(); openInspector();
+      });
+    });
+    $("f-link").addEventListener("click", function () {
+      linkFrom = n.id; vp.classList.add("linking"); render();
+    });
+    $("f-del").addEventListener("click", deleteSelected);
+  }
+
+  function inspectEdge(e) {
+    var dashed = !!(e.style && e.style.strokeDasharray);
+    var h = '<h2>Link</h2><div class="insp-id">' + esc(e.source) + " → " + esc(e.target) + "</div>";
+    h += '<div class="fld"><label>Label on the arrow</label><input type="text" id="e-label" value="' +
+      esc(e.label || "") + '"></div>';
+    h += '<div class="fld"><label>Line style</label><select id="e-style">' +
+      opts([["solid", "Solid (main flow)"], ["dashed", "Dashed (cross-link)"]], dashed ? "dashed" : "solid") +
+      "</select></div>";
+    h += '<div class="fld"><label>Colour</label><select id="e-color">' +
+      opts([["#5B5550", "Grey (default)"], ["#1E5F4B", "Green (cross-link)"],
+            ["#C96A4A", "Orange (billing)"]], (e.style && e.style.stroke) || "#5B5550") + "</select></div>";
+    h += '<div class="insp-actions"><button class="btn danger wide" id="e-del" type="button">Delete link</button></div>';
+    insp.innerHTML = h;
+
+    var lab = $("e-label"), before = lab.value;
+    lab.addEventListener("blur", function () {
+      if (lab.value === before) return;
+      pushUndo();
+      if (lab.value.trim()) e.label = lab.value.trim(); else delete e.label;
+      render(); openInspector();
+    });
+    $("e-style").addEventListener("change", function () {
+      pushUndo();
+      e.style = e.style || {};
+      if ($("e-style").value === "dashed") e.style.strokeDasharray = "6 4";
+      else delete e.style.strokeDasharray;
+      render(); openInspector();
+    });
+    $("e-color").addEventListener("change", function () {
+      pushUndo();
+      e.style = e.style || {}; e.style.stroke = $("e-color").value;
+      e.markerEnd = { type: "arrowclosed", color: $("e-color").value };
+      render(); openInspector();
+    });
+    $("e-del").addEventListener("click", deleteSelected);
+  }
+
+  // ---------------- export ----------------
+  function download(name, text, mime) {
+    try {
+      var b = new Blob([text], { type: mime });
+      var u = URL.createObjectURL(b), a = document.createElement("a");
+      a.href = u; a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(u); a.remove(); }, 1500);
+      return true;
+    } catch (err) { return false; }
+  }
+
+  function showModal(title, note, text, filename, mime) {
+    $("mTitle").textContent = title;
+    $("mNote").textContent = note;
+    $("mText").value = text;
+    $("modal").hidden = false;
+    $("mDownload").onclick = function () { download(filename, text, mime); };
+    $("mCopy").onclick = function () {
+      var t = $("mText"); t.select();
+      if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function () {});
+      else try { document.execCommand("copy"); } catch (err) {}
+      $("mCopy").textContent = "Copied";
+      setTimeout(function () { $("mCopy").textContent = "Copy"; }, 1400);
+    };
+  }
+
+  function exportJSON() {
+    showModal("Export flow JSON",
+      "This is the file to attach in Emergent, or to keep as a backup. If the download is blocked, copy the text instead.",
+      JSON.stringify({ nodes: state.nodes, edges: state.edges }, null, 2),
+      "ovum-front-desk-flow.json", "application/json");
+  }
+
+  function saveHTML() {
+    var clone = document.documentElement.cloneNode(true);
+    ["nodes", "bands", "labels", "edges", "phaseList", "legendRoles"].forEach(function (id) {
+      var el = clone.querySelector("#" + id); if (el) el.innerHTML = "";
+    });
+    var c = clone.querySelector("#canvas");
+    if (c) { c.style.transform = ""; c.style.width = ""; c.style.height = ""; }
+    var i = clone.querySelector("#inspector"); if (i) { i.innerHTML = ""; i.hidden = true; }
+    var m = clone.querySelector("#modal"); if (m) m.hidden = true;
+    var fd = clone.querySelector("#flowdata");
+    if (fd) fd.textContent = "const FLOW_DATA=" + JSON.stringify({ nodes: state.nodes, edges: state.edges }) + ";";
+    var html = "<!doctype html>\n" + clone.outerHTML;
+    showModal("Save an updated copy",
+      "Press Download to save this as your new atlas file. If nothing downloads (you are viewing on the web, not from your own file), copy the text and save it as a .html file.",
+      html, "ovum-front-desk-atlas.html", "text/html");
+  }
+
+  // ---------------- minimap ----------------
+  var mmC = $("mm"), mmView = $("mmView"), mmK = 1, mmW = 0, mmH = 0;
+  function drawMinimap() {
+    mmK = Math.min(150 / CW, 430 / CH);
+    mmW = Math.max(1, Math.round(CW * mmK)); mmH = Math.max(1, Math.round(CH * mmK));
+    mmC.width = mmW; mmC.height = mmH;
+    mmC.parentNode.style.width = mmW + "px"; mmC.parentNode.style.height = mmH + "px";
+    var g = mmC.getContext("2d");
+    g.fillStyle = "#F2EFE7"; g.fillRect(0, 0, mmW, mmH);
+    phases.forEach(function (p) {
+      var b = phaseBox[p.id] && phaseBox[p.id].box; if (!b) return;
+      g.fillStyle = p.data.accent;
+      g.fillRect((b.x - ORIGIN.x) * mmK, (b.y - ORIGIN.y) * mmK, b.w * mmK, b.h * mmK);
+      g.fillStyle = p.data.stroke;
+      g.fillRect((b.x - ORIGIN.x) * mmK, (b.y - ORIGIN.y) * mmK, 1.5, b.h * mmK);
+    });
+    items.forEach(function (n) {
+      var r = rects[n.id], d = n.data || {};
+      if (n.type === "note") g.fillStyle = d.tone === "warn" ? "#C0503A" : "#8894AC";
+      else if (n.type === "decision") g.fillStyle = "#C9A24B";
+      else if (n.type === "end") g.fillStyle = "#24201D";
+      else g.fillStyle = ROLE_COLOR[d.role] || "#3B3B3B";
+      g.fillRect((r.x - ORIGIN.x) * mmK, (r.y - ORIGIN.y) * mmK,
+        Math.max(1.5, r.w * mmK), Math.max(1, r.h * mmK));
+    });
+    drawMinimapView();
+  }
+  function drawMinimapView() {
+    if (!ORIGIN) return;
+    var r = vp.getBoundingClientRect();
+    mmView.style.left = Math.max(0, (-tx / k) * mmK) + "px";
+    mmView.style.top = Math.max(0, (-ty / k) * mmK) + "px";
+    mmView.style.width = Math.min(mmW, (r.width / k) * mmK) + "px";
+    mmView.style.height = Math.min(mmH, (r.height / k) * mmK) + "px";
+  }
+  mmC.parentNode.addEventListener("click", function (ev) {
+    var b = mmC.getBoundingClientRect(), r = vp.getBoundingClientRect();
+    tx = r.width / 2 - ((ev.clientX - b.left) / mmK) * k;
+    ty = r.height / 2 - ((ev.clientY - b.top) / mmK) * k;
+    apply();
+  });
+
+  // ---------------- wiring ----------------
+  $("zin").addEventListener("click", function () { zoomBy(1.3); });
+  $("zout").addEventListener("click", function () { zoomBy(1 / 1.3); });
+  $("fit").addEventListener("click", fitAll);
+  $("top").addEventListener("click", fitWidth);
+  $("export").addEventListener("click", exportJSON);
+  $("savehtml").addEventListener("click", saveHTML);
+  $("addnode").addEventListener("click", addNode);
+  $("undo").addEventListener("click", undo);
+  $("mClose").addEventListener("click", function () { $("modal").hidden = true; });
+  $("modal").addEventListener("click", function (ev) {
+    if (ev.target === $("modal")) $("modal").hidden = true;
+  });
+
+  $("edit").addEventListener("click", function () {
+    editMode = !editMode;
+    sel = null; linkFrom = null;
+    vp.classList.remove("linking");
+    $("edit").classList.toggle("on", editMode);
+    $("edit").textContent = editMode ? "Editing" : "Edit";
+    $("editTools").hidden = !editMode;
+    if (!editMode) closeInspector(); else showHelp();
+    render();
+  });
+
+  function showHelp() {
+    insp.hidden = false;
+    insp.innerHTML = '<h2>Edit mode</h2><div class="insp-id">Nothing selected</div>' +
+      '<div class="hint"><p><b>Move</b> a card by dragging it.</p>' +
+      '<p><b>Edit</b> a card by clicking it, then changing the fields here.</p>' +
+      '<p><b>Add</b> a card with the New card button, then drag it where you want.</p>' +
+      '<p><b>Link</b> two cards: select one, press Draw link from here, then click the other card.</p>' +
+      '<p><b>Delete</b> what is selected with the Delete key.</p>' +
+      '<p><b>Undo</b> with <code>Ctrl</code> + <code>Z</code>.</p>' +
+      '<p>When you are done, press <b>Export JSON</b> for Emergent, or <b>Save copy</b> to keep an updated HTML file.</p></div>';
+  }
+
+  document.addEventListener("keydown", function (ev) {
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(ev.target.tagName)) return;
+    var r = vp.getBoundingClientRect(), STEP = 90;
+    var nav = {
+      ArrowDown: [0, STEP], ArrowUp: [0, -STEP], ArrowRight: [STEP, 0], ArrowLeft: [-STEP, 0],
+      PageDown: [0, r.height * 0.85], PageUp: [0, -r.height * 0.85]
+    };
+    if (nav[ev.key] && !ev.ctrlKey && !ev.metaKey) {
+      ev.preventDefault(); scrollBy(nav[ev.key][0], nav[ev.key][1]); return;
+    }
+    if (ev.key === "Home" && !ev.ctrlKey) { ev.preventDefault(); ty = 0; apply(); return; }
+    if (ev.key === "End" && !ev.ctrlKey) { ev.preventDefault(); ty = -1e9; apply(); return; }
+    if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "z") { ev.preventDefault(); undo(); }
+    else if ((ev.key === "Delete" || ev.key === "Backspace") && editMode && sel) { ev.preventDefault(); deleteSelected(); }
+    else if (ev.key === "Escape") {
+      if (!$("modal").hidden) $("modal").hidden = true;
+      else { sel = null; linkFrom = null; vp.classList.remove("linking"); render(); closeInspector(); }
+    }
+  });
+
+  var lg = $("legendRoles");
+  Object.keys(ROLE_NAME).forEach(function (r) {
+    var d = document.createElement("div");
+    d.innerHTML = '<span class="dot" style="background:' + ROLE_COLOR[r] + '"></span>' + ROLE_NAME[r];
+    lg.appendChild(d);
+  });
+
+  render(true);
+  fitWidth();
+  booted = true;
+  window.addEventListener("resize", apply);
+})();
+</script>
+</body>
+</html>
